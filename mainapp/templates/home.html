@@ -1,13 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
-    <p>Strona główna</p>
-    <form>
-    Login:
-    <input id="login" type="text">
-        <br>
-        Hasło:
-    <input id="password" type="password">
-        <br>
-    <input type="button" value="Zaloguj">
-    </form>
+<div class='loginContainter'>
+        <div class='container'>
+            <div class="col-xs-8 col-xs-offset-2 col-lg-4 col-lg-offset-4 textStyle">
+                <div class="text-center">
+				<p class = "label"> <b>Dziennik szkolny</b> </p>
+                    <form>
+                        <div class="form-group">
+                            <label for="login">Login:</label> <input class=
+                            "form-control" id="login" type="text">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Hasło:</label> <input class=
+                            "form-control" id="password" type="password">
+                        </div><input class="btn btn-default" type="button"
+                        value="Zaloguj">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
