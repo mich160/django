@@ -1,0 +1,56 @@
+html, body, container-table {
+    height: 100%;
+	max-width: 1600px;
+    margin:auto;
+}
+
+.container {
+  width: auto;
+  padding: 0; 
+}
+.container .text-muted {
+  margin: 20px 0;
+  padding-left: 15px;;
+}
+
+.loginContainter {
+    background-image: url("loginBackground.jpg");
+	height: 100%;
+	max-width: 1600px;
+	
+}
+
+.textStyle {
+	margin-top:250px;
+	padding:10px;
+	border-style:solid;
+	border-width:2px;
+	border-radius: 25px;
+	background:linear-gradient(rgba(215,215,215,0.6), rgba(28,28,28,0.7));
+}
+
+label {
+	color:white;
+	font-size:16px;
+}
+
+.label {
+	color:rgb(45,45,45);
+	font-size:24px;
+}
+
+ 
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  max-width:1600px;
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+form {
+	padding:20px;
+}
+
