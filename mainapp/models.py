@@ -2,22 +2,34 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
-# Create your models here.
 class Class(models.Model):
     name = models.CharField(max_length=30)
+
+    def __str__(self):
+        return "class: " + self.name
+
+
+class Teacher(models.Model):
+    user = models.OneToOneField(User, related_name='teacher')
+
+    def __str__(self):
+        return "teacher: "+str(self.user)
+
+
+class Parent(models.Model):
+    user = models.OneToOneField(User, related_name='parent')
+
+    def __str__(self):
+        return "parent: "+str(self.user)
 
 
 class Student(models.Model):
     clazz = models.ForeignKey(Class)
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, related_name='student')
+    parents = models.ManyToManyField(Parent, blank=True)
 
-
-class Teacher(models.Model):
-    user = models.OneToOneField(User)
-
-
-class Parent(models.Model):
-    user = models.OneToOneField(User)
+    def __str__(self):
+        return "student: "+str(self.user)
 
 
 class Subject(models.Model):
@@ -25,11 +37,16 @@ class Subject(models.Model):
     clazz = models.ForeignKey(Class)
     teacher = models.ForeignKey(Teacher)
 
+    def __str__(self):
+        return "subject: "+str(self.name) + str(self.clazz)
+
 
 class Lesson(models.Model):
     subject = models.ForeignKey(Subject)
-    clazz = models.ForeignKey(Class)
     date = models.DateTimeField()
+
+    def __str__(self):
+        return "lesson: "+str(self.subject)+" "+str(self.date)
 
 
 class Grade(models.Model):
@@ -38,13 +55,22 @@ class Grade(models.Model):
     lesson = models.ForeignKey(Lesson)
     forWhat = models.CharField(max_length=100)
 
+    def __str__(self):
+        return "grade: "+str(self.grade) + " " + str(self.lesson) + " " + str(self.student)
+
 
 class Absence(models.Model):
     lesson = models.ForeignKey(Lesson)
-    absenceStudent = models.ForeignKey(Student)
+    student = models.ForeignKey(Student)
+
+    def __str__(self):
+        return "absence: " + str(self.lesson) + str(self.student)
 
 
 class Remark(models.Model):
     lesson = models.ForeignKey(Lesson)
-    remarkStudent = models.ForeignKey(Student)
+    student = models.ForeignKey(Student)
     info = models.CharField(max_length=200)
+
+    def __str__(self):
+        return "remark: " + str(self.student) + " " + str(self.lesson)
