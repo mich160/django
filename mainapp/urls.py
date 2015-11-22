@@ -7,5 +7,6 @@ urlpatterns = [
     url(r'^redirect','mainapp.views.redirectLogged'),
     url(r'^student', 'mainapp.views.studentmain'),
     url(r'^teacher', 'mainapp.views.teachermain'),
-    url(r'^parent', 'mainapp.views.parentmainmain')
+    url(r'^parent', 'mainapp.views.parentmain'),
+    url(r'^logout', 'mainapp.views.logout')
 ]

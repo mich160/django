@@ -2,25 +2,31 @@ from django.contrib.auth.hashers import check_password
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, render
+
 # Create your views here.
-from django.template import RequestContext
-from django.template.loader import get_template
 
 from mainapp.models import Teacher, Student, Parent
+from mainapp.utils import isLogged
 
 
 def home(request):
+    if isLogged(request):
+        return HttpResponseRedirect("/redirect")
     return render(request, 'home.html')
 
 
 def authenticate(request):  # todo url dla przekierowania i autoryzacji
     response = HttpResponseRedirect("/")
     response['wrongVals'] = 'true'
-    if 'username' in request.session:
+    if isLogged(request):
         response = HttpResponseRedirect("/redirect")
 
     elif 'username' in request.POST and 'password' in request.POST:
-        user = User.objects.get(username=request.POST['username'])
+        try:
+            user = User.objects.get(username=request.POST['username'])
+        except:
+            return response
+
         if check_password(request.POST['password'], user.password):
             request.session['username'] = request.POST['username']
             response = HttpResponseRedirect("/redirect")
@@ -51,13 +57,18 @@ def redirectLogged(request):
     return response
 
 
+def logout(request):  # TODO usuwanie sesji
+    request.session.flush()
+    return HttpResponseRedirect('/')
+
+
 def studentmain(request):
-    return HttpResponse("placeholder")
+    return HttpResponse("placeholder <a href=/logout>wyloguj</a>")
 
 
 def parentmain(request):
-    return HttpResponse("placeholder")
+    return HttpResponse("placeholder <a href=/logout>wyloguj</a>")
 
 
 def teachermain(request):
-    return HttpResponse("placeholder")
+    return HttpResponse("placeholder <a href=/logout>wyloguj</a>")
