@@ -52,12 +52,12 @@ def redirectLogged(request):
 
 
 def studentmain(request):
-    return HttpResponse()
+    return HttpResponse("placeholder")
 
 
 def parentmain(request):
-    return HttpResponse()
+    return HttpResponse("placeholder")
 
 
 def teachermain(request):
-    return HttpResponse()
+    return HttpResponse("placeholder")
