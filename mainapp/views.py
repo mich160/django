@@ -74,3 +74,5 @@ def addNewUser(request):
     # Some registration logic here
     
     return home(request)
+
+    

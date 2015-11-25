@@ -9,4 +9,6 @@ urlpatterns = [
     url(r'^index', 'mainapp.views.index'),
     url(r'^register', 'mainapp.views.register'),
     url(r'^addNewUser', 'mainapp.views.addNewUser')
+    remark
+    url(r'^remark', 'mainapp.views.remark')
 ]
