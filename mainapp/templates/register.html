@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
 
-
 <div class='nonLogged'>
 	<div class='container'>
 		<div class="col-xs-8 col-xs-offset-2 col-lg-4 col-lg-offset-4 textStyle topMargin100">
@@ -9,8 +8,6 @@
 				<p class = "label">
 					<b>Dziennik szkolny</b>
 				</p>
-				
-				
 				<form action="/addNewUser" method="post">
 					{% csrf_token %}
 					<div class="form-group">
@@ -46,16 +43,12 @@
 					<input class="btn btn-default" type="submit"
 					value="Rejestruj">
 					<button class="btn btn-default cancelRegistration">
-							Anuluj
+						Anuluj
 					</button>
 				</form>
-				
-				
 			</div>
 		</div>
 	</div>
 </div>
-
-
 
 {% endblock %}

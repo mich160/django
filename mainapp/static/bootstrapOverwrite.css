@@ -47,10 +47,8 @@ label {
 	font-size:24px;
 }
 
- 
-
 .footer {
-  position: absolute;
+  position: relative;
   bottom: 0;
   width: 100%;
   max-width:1600px;
@@ -89,4 +87,15 @@ a:hover {
 	text-decoration: None;
 }
 
+.paddingTop {
+	padding-top: 10px;
+}
+
+.paddingLeft {
+	padding-left: 20px;
+}
+
+.paddingRight {
+	padding-right:20px;
+}
 
