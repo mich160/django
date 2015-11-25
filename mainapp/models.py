@@ -13,14 +13,14 @@ class Teacher(models.Model):
     user = models.OneToOneField(User, related_name='teacher')
 
     def __str__(self):
-        return "teacher: "+str(self.user)
+        return "teacher: " + str(self.user)
 
 
 class Parent(models.Model):
     user = models.OneToOneField(User, related_name='parent')
 
     def __str__(self):
-        return "parent: "+str(self.user)
+        return "parent: " + str(self.user)
 
 
 class Student(models.Model):
@@ -29,7 +29,7 @@ class Student(models.Model):
     parents = models.ManyToManyField(Parent, blank=True)
 
     def __str__(self):
-        return "student: "+str(self.user)
+        return "student: " + str(self.user)
 
 
 class Subject(models.Model):
@@ -38,7 +38,7 @@ class Subject(models.Model):
     teacher = models.ForeignKey(Teacher)
 
     def __str__(self):
-        return "subject: "+str(self.name) + str(self.clazz)
+        return "subject: " + str(self.name) + str(self.clazz)
 
 
 class Lesson(models.Model):
@@ -46,7 +46,7 @@ class Lesson(models.Model):
     date = models.DateTimeField()
 
     def __str__(self):
-        return "lesson: "+str(self.subject)+" "+str(self.date)
+        return "lesson: " + str(self.subject) + " " + str(self.date)
 
 
 class Grade(models.Model):
@@ -56,7 +56,7 @@ class Grade(models.Model):
     forWhat = models.CharField(max_length=100)
 
     def __str__(self):
-        return "grade: "+str(self.grade) + " " + str(self.lesson) + " " + str(self.student)
+        return "grade: " + str(self.grade) + " " + str(self.lesson) + " " + str(self.student)
 
 
 class Absence(models.Model):
@@ -74,3 +74,4 @@ class Remark(models.Model):
 
     def __str__(self):
         return "remark: " + str(self.student) + " " + str(self.lesson)
+    

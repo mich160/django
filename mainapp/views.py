@@ -40,20 +40,21 @@ def redirectLogged(request):
     response['wrongVals'] = 'true'
     try:
         Teacher.objects.get(user=user)
-        response = HttpResponseRedirect("teachermain")
+        request.session["type"] = "teacher"
     except:
         pass
     try:
         Student.objects.get(user=user)
-        response = HttpResponseRedirect('studentmain')
+        request.session["type"] = "student"
     except:
         pass
     try:
         Parent.objects.get(user=user)
-        response = HttpResponseRedirect('parentmain')
+        request.session["type"] = "parent"
     except:
         pass
 
+    response = HttpResponseRedirect("finalizeLogin")
     return response
 
 
@@ -62,13 +63,5 @@ def logout(request):  # TODO usuwanie sesji
     return HttpResponseRedirect('/')
 
 
-def studentmain(request):
-    return HttpResponse("placeholder <a href=/logout>wyloguj</a>")
-
-
-def parentmain(request):
-    return HttpResponse("placeholder <a href=/logout>wyloguj</a>")
-
-
-def teachermain(request):
-    return HttpResponse("placeholder <a href=/logout>wyloguj</a>")
+def finalizeLogin(request):
+    return render(request, 'genericNavbar.html')
