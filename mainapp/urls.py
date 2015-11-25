@@ -5,6 +5,8 @@ urlpatterns = [
     url(r'^$','mainapp.views.home'),
     url(r'^authenticate', 'mainapp.views.authenticate'),
     url(r'^redirect','mainapp.views.redirectLogged'),
-    url(r'^finalizeLogin', 'mainapp.views.finalizeLogin'),
-    url(r'^logout', 'mainapp.views.logout')
+    url(r'^logout', 'mainapp.views.logout'),
+    url(r'^index', 'mainapp.views.index'),
+    url(r'^register', 'mainapp.views.register'),
+    url(r'^addNewUser', 'mainapp.views.addNewUser')
 ]

@@ -12,7 +12,7 @@ from mainapp.utils import isLogged
 def home(request):
     if isLogged(request):
         return HttpResponseRedirect("/redirect")
-    return render(request, 'home.html')
+    return render(request, 'login.html')
 
 
 def authenticate(request):  # todo url dla przekierowania i autoryzacji
@@ -54,7 +54,7 @@ def redirectLogged(request):
     except:
         pass
 
-    response = HttpResponseRedirect("finalizeLogin")
+    response = HttpResponseRedirect("index")
     return response
 
 
@@ -63,5 +63,14 @@ def logout(request):  # TODO usuwanie sesji
     return HttpResponseRedirect('/')
 
 
-def finalizeLogin(request):
-    return render(request, 'genericNavbar.html')
+def index(request):
+    return render(request, 'index.html')
+
+def register(request):
+    return render(request, 'register.html')
+
+def addNewUser(request):
+    
+    # Some registration logic here
+    
+    return home(request)
