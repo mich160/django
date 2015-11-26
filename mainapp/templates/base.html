@@ -2,9 +2,10 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 		<link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
 		<link href="{% static 'bootstrapOverwrite.css' %}" rel="stylesheet" media="screen">
-		<!-- <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script> -->
+		<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
 		<meta charset="UTF-8">
 		<title>Dziennik szkolny</title>
 	</head>
@@ -35,7 +36,7 @@
 			</div>
 		</div>
 
-		<nav class="navbar navbar-default">
+		<nav class="navbar navbar-default paddingBottom">
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle collapsed"
@@ -83,7 +84,7 @@
 		{% block content %}
 		{% endblock %}
 
-		<footer class="footer">
+		<footer class="navbar navbar-default navbar-bottom">
 			<div class="container">
 				<p class="text-muted">
 					Dziennik szkolny

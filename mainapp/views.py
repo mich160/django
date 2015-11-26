@@ -1,7 +1,10 @@
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.models import User
+from models import Class, Student, Remark, Lesson, Subject
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, render
+from django.http import JsonResponse
+
 
 # Create your views here.
 
@@ -75,4 +78,53 @@ def addNewUser(request):
     
     return home(request)
 
+def remark(request):
+    if request.session["type"] == "teacher":
+        return render(request, "teacherRemark.html")
+    else:
+        return render(request, "checkRemarks.html")
+    
+def fetchPeopleFromClass(request):
+    
+    selectedClass = request.POST["classSelected"]
+    c = Class.objects.get(name=selectedClass)
+    u = Student.objects.filter(clazz=c)
+    l = []
+    for item in u:
+        l.append(str(item))
+        
+    # tutaj powinno wysylac username(do option value) + imie i nazwisko(do wyswietlenia) 
+    
+    return JsonResponse({ 'studentsList': l })
+
+def saveRemark(request):
+    remarkText = request.POST["remarkText"]
+    # This is here for extending utility purposes
+    clz = request.POST["clazz"]
+    students = request.POST.getlist("students[]")
+    tchr = request.session["username"]
+    
+    u = User.objects.get(username=tchr)
+    t = Teacher.objects.get(user=u)
+    sub = Subject.objects.get(name="Math")
+    l = Lesson.objects.get(subject=sub)
+    
+    for s in students: 
+        u1 = User.objects.get(username=s)
+        s = Student.objects.get(user=u1)
+        Remark.objects.create(lesson=l, student=s, info=remarkText)
+    
+    return HttpResponse('')
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     

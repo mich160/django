@@ -7,3 +7,5 @@ def isLogged(request):
     else:
         return False
 
+def isStudent(username):
+    return True

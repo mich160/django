@@ -9,5 +9,8 @@ urlpatterns = [
     url(r'^index', 'mainapp.views.index'),
     url(r'^register', 'mainapp.views.register'),
     url(r'^addNewUser', 'mainapp.views.addNewUser'),
-    url(r'^remark', 'mainapp.views.remark')
+    url(r'^remark', 'mainapp.views.remark'),
+    url(r'^fetchPeopleFromClass', 'mainapp.views.fetchPeopleFromClass'),
+    url(r'^saveRemark', 'mainapp.views.saveRemark')
+
 ]
