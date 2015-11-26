@@ -1,6 +1,6 @@
 from django import template
 from mainapp import utils
-from mainapp.models import User, Teacher, Subject, Class, Student, Remark
+from mainapp.models import User, Teacher, Subject, Class, Student, Remark, Parent
 from django.http import JsonResponse
 
 
@@ -23,11 +23,13 @@ def fetchChilds(request):
     if(utils.isStudent(uname)):
         return [uname]
     else:
-        u = Users.objects.get(username = uname)
-        p = Parent.objects.get(username = uname)
+        u = User.objects.get(username = uname)
+        p = Parent.objects.get(user = u)
         s = Student.objects.filter(parents = p)
-        
-    return JsonResponse({ 'studentsList': s })
+        studentList = []
+        for item in s:
+            studentList.append(item.user.username)
+    return studentList
    
 @register.filter 
 def fetchRemarks(uname):
