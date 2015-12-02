@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from models import Teacher, Student
+from mainapp.models import Teacher, Student
 
 def isLogged(request):
     if 'username' in request.session:
