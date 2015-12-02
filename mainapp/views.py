@@ -1,6 +1,6 @@
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.models import User
-from models import Class, Student, Remark, Lesson, Subject
+from mainapp.models import Class, Student, Remark, Lesson, Subject
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, render
 from django.http import JsonResponse
