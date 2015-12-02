@@ -2,14 +2,14 @@ from django.contrib.auth.hashers import check_password
 from django.contrib.auth.models import User
 from mainapp.models import Class, Student, Remark, Lesson, Subject
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render_to_response, render
+from django.shortcuts import render
 from django.http import JsonResponse
 
 
 # Create your views here.
 
 from mainapp.models import Teacher, Student, Parent
-from mainapp.utils import isLogged
+from mainapp.utils import isLogged, validateNewUserData
 
 
 def home(request):
@@ -61,7 +61,7 @@ def redirectLogged(request):
     return response
 
 
-def logout(request):  # TODO usuwanie sesji
+def logout(request):
     request.session.flush()
     return HttpResponseRedirect('/')
 
@@ -73,7 +73,15 @@ def register(request):
     return render(request, 'register.html')
 
 def addNewUser(request):
-    
+    registerErrors = validateNewUserData(request)
+    if registerErrors.keys():
+        response = HttpResponseRedirect('/register')
+        for key in registerErrors.keys():
+            response[key] = registerErrors[key]
+        return response
+    else:
+        pass#TODO
+
     # Some registration logic here
     
     return home(request)
