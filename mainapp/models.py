@@ -10,26 +10,38 @@ class Class(models.Model):
 
 
 class Teacher(models.Model):
-    user = models.OneToOneField(User, related_name='teacher')
+    tempFullName = models.CharField(max_length=70, null=True, blank=True)
+    user = models.OneToOneField(User, related_name='teacher', on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
-        return str(self.user)
+        if not self.user:
+            return str(self.tempFullName)
+        else:
+            return str(self.user)
 
 
 class Parent(models.Model):
-    user = models.OneToOneField(User, related_name='parent')
+    tempFullName = models.CharField(max_length=70, null=True, blank=True)
+    user = models.OneToOneField(User, related_name='parent', on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
-        return str(self.user)
+        if not self.user:
+            return str(self.tempFullName)
+        else:
+            return str(self.user)
 
 
 class Student(models.Model):
+    tempFullName = models.CharField(max_length=70, null=True, blank=True)
     clazz = models.ForeignKey(Class)
-    user = models.OneToOneField(User, related_name='student')
+    user = models.OneToOneField(User, related_name='student', on_delete=models.CASCADE, null=True, blank=True)
     parents = models.ManyToManyField(Parent, blank=True)
 
     def __str__(self):
-        return str(self.user)
+        if not self.user:
+            return str(self.tempFullName)
+        else:
+            return str(self.user)
 
 
 class Subject(models.Model):
@@ -78,10 +90,12 @@ class Remark(models.Model):
 
 class HashCode(models.Model):
     code = models.CharField(max_length=30)
-    userType = models.CharField(max_length=40)
+    teacher = models.OneToOneField(Teacher, blank=True, null=True)
+    student = models.OneToOneField(Student, blank=True, null=True)
+    parent = models.OneToOneField(Parent, blank=True, null=True)
     name = models.CharField(max_length=30)
     surname = models.CharField(max_length=30)
     studentClazz = models.ForeignKey(Class, blank=True, null=True)
 
     def __str__(self):
-        return str(self.code) + ": " + str(self.userType) + " " + str(self.name) + " " + str(self.surname)
+        return str(self.code) + ": " + " " + str(self.name) + " " + str(self.surname)

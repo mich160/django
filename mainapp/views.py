@@ -83,13 +83,6 @@ def addNewUser(request):
     else:
         pass
         hashCode = HashCode.objects.get(code=request.POST['hashCode'])
-        if hashCode.userType == "teacher":
-            concreteUser = Teacher()
-        elif hashCode.userType == "student":
-            concreteUser = Student()
-            concreteUser.clazz = hashCode.studentClazz
-        else:
-            concreteUser = Parent()
         newUser = User()
         newUser.username = request.POST['username']
         newUser.email = request.POST['email']
@@ -97,8 +90,18 @@ def addNewUser(request):
         newUser.last_name = hashCode.surname
         newUser.password = make_password(request.POST['password'])
         newUser.save()
-        concreteUser.user = newUser
-        concreteUser.save()
+        if hashCode.teacher:
+            hashCode.teacher.user = newUser
+            hashCode.teacher.tempFullName = ''
+            hashCode.teacher.save()
+        if hashCode.student:
+            hashCode.student.user = newUser
+            hashCode.student.tempFullName = ''
+            hashCode.student.save()
+        if hashCode.parent:
+            hashCode.parent.user = newUser
+            hashCode.parent.tempFullName = ''
+            hashCode.parent.save()
         hashCode.delete()
 
     return home(request)
