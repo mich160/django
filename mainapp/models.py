@@ -79,8 +79,9 @@ class Remark(models.Model):
 class HashCode(models.Model):
     code = models.CharField(max_length=30)
     userType = models.CharField(max_length=40)
-    name = models.CharField(max_length=100)
-    surname = models.CharField(max_length=100)
+    name = models.CharField(max_length=30)
+    surname = models.CharField(max_length=30)
+    studentClazz = models.ForeignKey(Class, blank=True, null=True)
 
     def __str__(self):
         return str(self.code) + ": " + str(self.userType) + " " + str(self.name) + " " + str(self.surname)

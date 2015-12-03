@@ -32,7 +32,7 @@ def validateNewUserData(request):
     except:
         pass
     try:
-        hashcodeInDB = HashCode.objects.get(hashcode=hashcode)
+        hashcodeInDB = HashCode.objects.get(code=hashcode)
     except:
         errors['hashcode'] = 'No hashcode set in database'
 

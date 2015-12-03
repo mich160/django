@@ -10,12 +10,6 @@
       <primary-key columns="id"/>
       <exported-key name="#FAKE_auth_group_permissions_2" table="auth_group_permissions" schema="" catalog="" columns="group_id"/>
       <exported-key name="#FAKE_auth_user_groups_1" table="auth_user_groups" schema="" catalog="" columns="group_id"/>
-      <exported-key name="#FAKE_auth_group_permissions_2" table="auth_group_permissions" schema="" catalog="" columns="group_id"/>
-      <exported-key name="#FAKE_auth_user_groups_1" table="auth_user_groups" schema="" catalog="" columns="group_id"/>
-      <exported-key name="#FAKE_auth_group_permissions_2" table="auth_group_permissions" schema="" catalog="" columns="group_id"/>
-      <exported-key name="#FAKE_auth_user_groups_1" table="auth_user_groups" schema="" catalog="" columns="group_id"/>
-      <exported-key name="#FAKE_auth_group_permissions_2" table="auth_group_permissions" schema="" catalog="" columns="group_id"/>
-      <exported-key name="#FAKE_auth_user_groups_1" table="auth_user_groups" schema="" catalog="" columns="group_id"/>
     </table>
     <table name="auth_group_permissions" schema="" catalog="" type="TABLE">
       <column name="id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
@@ -34,11 +28,6 @@
       <column name="name" sqlType="VARCHAR(255)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <primary-key columns="id"/>
       <foreign-key name="#FAKE_auth_permission_1" columns="content_type_id" ref-table="django_content_type" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <exported-key name="#FAKE_auth_group_permissions_1" table="auth_group_permissions" schema="" catalog="" columns="permission_id"/>
-      <exported-key name="#FAKE_auth_user_user_permissions_1" table="auth_user_user_permissions" schema="" catalog="" columns="permission_id"/>
-      <exported-key name="#FAKE_auth_group_permissions_1" table="auth_group_permissions" schema="" catalog="" columns="permission_id"/>
-      <exported-key name="#FAKE_auth_user_user_permissions_1" table="auth_user_user_permissions" schema="" catalog="" columns="permission_id"/>
-      <exported-key name="#FAKE_auth_group_permissions_1" table="auth_group_permissions" schema="" catalog="" columns="permission_id"/>
       <exported-key name="#FAKE_auth_group_permissions_1" table="auth_group_permissions" schema="" catalog="" columns="permission_id"/>
       <exported-key name="#FAKE_auth_user_user_permissions_1" table="auth_user_user_permissions" schema="" catalog="" columns="permission_id"/>
       <index name="auth_permission_417f1b1c" unique="true" columns="content_type_id"/>
@@ -62,16 +51,6 @@
       <exported-key name="#FAKE_mainapp_parent_1" table="mainapp_parent" schema="" catalog="" columns="user_id"/>
       <exported-key name="#FAKE_mainapp_student_1" table="mainapp_student" schema="" catalog="" columns="user_id"/>
       <exported-key name="#FAKE_mainapp_teacher_1" table="mainapp_teacher" schema="" catalog="" columns="user_id"/>
-      <exported-key name="#FAKE_auth_user_groups_2" table="auth_user_groups" schema="" catalog="" columns="user_id"/>
-      <exported-key name="#FAKE_auth_user_user_permissions_2" table="auth_user_user_permissions" schema="" catalog="" columns="user_id"/>
-      <exported-key name="#FAKE_django_admin_log_1" table="django_admin_log" schema="" catalog="" columns="user_id"/>
-      <exported-key name="#FAKE_mainapp_parent_1" table="mainapp_parent" schema="" catalog="" columns="user_id"/>
-      <exported-key name="#FAKE_mainapp_student_1" table="mainapp_student" schema="" catalog="" columns="user_id"/>
-      <exported-key name="#FAKE_mainapp_teacher_1" table="mainapp_teacher" schema="" catalog="" columns="user_id"/>
-      <exported-key name="#FAKE_auth_user_groups_2" table="auth_user_groups" schema="" catalog="" columns="user_id"/>
-      <exported-key name="#FAKE_auth_user_groups_2" table="auth_user_groups" schema="" catalog="" columns="user_id"/>
-      <exported-key name="#FAKE_auth_user_user_permissions_2" table="auth_user_user_permissions" schema="" catalog="" columns="user_id"/>
-      <exported-key name="#FAKE_django_admin_log_1" table="django_admin_log" schema="" catalog="" columns="user_id"/>
       <exported-key name="#FAKE_mainapp_parent_1" table="mainapp_parent" schema="" catalog="" columns="user_id"/>
       <exported-key name="#FAKE_mainapp_student_1" table="mainapp_student" schema="" catalog="" columns="user_id"/>
       <exported-key name="#FAKE_mainapp_teacher_1" table="mainapp_teacher" schema="" catalog="" columns="user_id"/>
@@ -118,11 +97,6 @@
       <primary-key columns="id"/>
       <exported-key name="#FAKE_auth_permission_1" table="auth_permission" schema="" catalog="" columns="content_type_id"/>
       <exported-key name="#FAKE_django_admin_log_2" table="django_admin_log" schema="" catalog="" columns="content_type_id"/>
-      <exported-key name="#FAKE_auth_permission_1" table="auth_permission" schema="" catalog="" columns="content_type_id"/>
-      <exported-key name="#FAKE_django_admin_log_2" table="django_admin_log" schema="" catalog="" columns="content_type_id"/>
-      <exported-key name="#FAKE_auth_permission_1" table="auth_permission" schema="" catalog="" columns="content_type_id"/>
-      <exported-key name="#FAKE_auth_permission_1" table="auth_permission" schema="" catalog="" columns="content_type_id"/>
-      <exported-key name="#FAKE_django_admin_log_2" table="django_admin_log" schema="" catalog="" columns="content_type_id"/>
     </table>
     <table name="django_migrations" schema="" catalog="" type="TABLE">
       <column name="id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
@@ -152,10 +126,6 @@
       <column name="id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
       <column name="name" sqlType="VARCHAR(30)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <primary-key columns="id"/>
-      <exported-key name="#FAKE_mainapp_lesson_2" table="mainapp_lesson" schema="" catalog="" columns="clazz_id"/>
-      <exported-key name="#FAKE_mainapp_student_2" table="mainapp_student" schema="" catalog="" columns="clazz_id"/>
-      <exported-key name="#FAKE_mainapp_subject_2" table="mainapp_subject" schema="" catalog="" columns="clazz_id"/>
-      <exported-key name="#FAKE_mainapp_lesson_2" table="mainapp_lesson" schema="" catalog="" columns="clazz_id"/>
       <exported-key name="#FAKE_mainapp_student_2" table="mainapp_student" schema="" catalog="" columns="clazz_id"/>
       <exported-key name="#FAKE_mainapp_subject_2" table="mainapp_subject" schema="" catalog="" columns="clazz_id"/>
       <exported-key name="#FAKE_mainapp_student_2" table="mainapp_student" schema="" catalog="" columns="clazz_id"/>
@@ -173,16 +143,21 @@
       <index name="mainapp_grade_30a811f6" unique="true" columns="student_id"/>
       <index name="mainapp_grade_55174b7b" unique="true" columns="lesson_id"/>
     </table>
+    <table name="mainapp_hashcode" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="code" sqlType="VARCHAR(30)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="name" sqlType="VARCHAR(100)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="surname" sqlType="VARCHAR(100)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="userType" sqlType="VARCHAR(40)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <primary-key columns="id"/>
+    </table>
     <table name="mainapp_lesson" schema="" catalog="" type="TABLE">
       <column name="id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
       <column name="date" sqlType="DATETIME" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="subject_id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
       <primary-key columns="id"/>
       <foreign-key name="#FAKE_mainapp_lesson_1" columns="subject_id" ref-table="mainapp_subject" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <exported-key name="#FAKE_mainapp_absence_1" table="mainapp_absence" schema="" catalog="" columns="lesson_id"/>
-      <exported-key name="#FAKE_mainapp_grade_2" table="mainapp_grade" schema="" catalog="" columns="lesson_id"/>
-      <exported-key name="#FAKE_mainapp_remark_2" table="mainapp_remark" schema="" catalog="" columns="lesson_id"/>
-      <exported-key name="#FAKE_mainapp_absence_1" table="mainapp_absence" schema="" catalog="" columns="lesson_id"/>
+      <exported-key name="#FAKE_mainapp_absence_2" table="mainapp_absence" schema="" catalog="" columns="lesson_id"/>
       <exported-key name="#FAKE_mainapp_grade_2" table="mainapp_grade" schema="" catalog="" columns="lesson_id"/>
       <exported-key name="#FAKE_mainapp_remark_2" table="mainapp_remark" schema="" catalog="" columns="lesson_id"/>
       <exported-key name="#FAKE_mainapp_absence_2" table="mainapp_absence" schema="" catalog="" columns="lesson_id"/>
@@ -195,6 +170,7 @@
       <column name="user_id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
       <primary-key columns="id"/>
       <foreign-key name="#FAKE_mainapp_parent_1" columns="user_id" ref-table="auth_user" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <exported-key name="#FAKE_mainapp_student_parents_1" table="mainapp_student_parents" schema="" catalog="" columns="parent_id"/>
       <exported-key name="#FAKE_mainapp_student_parents_1" table="mainapp_student_parents" schema="" catalog="" columns="parent_id"/>
     </table>
     <table name="mainapp_remark" schema="" catalog="" type="TABLE">
@@ -215,12 +191,10 @@
       <primary-key columns="id"/>
       <foreign-key name="#FAKE_mainapp_student_1" columns="user_id" ref-table="auth_user" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
       <foreign-key name="#FAKE_mainapp_student_2" columns="clazz_id" ref-table="mainapp_class" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <exported-key name="#FAKE_mainapp_absence_2" table="mainapp_absence" schema="" catalog="" columns="absenceStudent_id"/>
+      <exported-key name="#FAKE_mainapp_absence_1" table="mainapp_absence" schema="" catalog="" columns="student_id"/>
       <exported-key name="#FAKE_mainapp_grade_1" table="mainapp_grade" schema="" catalog="" columns="student_id"/>
-      <exported-key name="#FAKE_mainapp_remark_1" table="mainapp_remark" schema="" catalog="" columns="remarkStudent_id"/>
-      <exported-key name="#FAKE_mainapp_absence_2" table="mainapp_absence" schema="" catalog="" columns="absenceStudent_id"/>
-      <exported-key name="#FAKE_mainapp_grade_1" table="mainapp_grade" schema="" catalog="" columns="student_id"/>
-      <exported-key name="#FAKE_mainapp_remark_1" table="mainapp_remark" schema="" catalog="" columns="remarkStudent_id"/>
+      <exported-key name="#FAKE_mainapp_remark_1" table="mainapp_remark" schema="" catalog="" columns="student_id"/>
+      <exported-key name="#FAKE_mainapp_student_parents_2" table="mainapp_student_parents" schema="" catalog="" columns="student_id"/>
       <exported-key name="#FAKE_mainapp_absence_1" table="mainapp_absence" schema="" catalog="" columns="student_id"/>
       <exported-key name="#FAKE_mainapp_grade_1" table="mainapp_grade" schema="" catalog="" columns="student_id"/>
       <exported-key name="#FAKE_mainapp_remark_1" table="mainapp_remark" schema="" catalog="" columns="student_id"/>
@@ -247,7 +221,6 @@
       <foreign-key name="#FAKE_mainapp_subject_2" columns="clazz_id" ref-table="mainapp_class" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
       <exported-key name="#FAKE_mainapp_lesson_1" table="mainapp_lesson" schema="" catalog="" columns="subject_id"/>
       <exported-key name="#FAKE_mainapp_lesson_1" table="mainapp_lesson" schema="" catalog="" columns="subject_id"/>
-      <exported-key name="#FAKE_mainapp_lesson_1" table="mainapp_lesson" schema="" catalog="" columns="subject_id"/>
       <index name="mainapp_subject_d9614d40" unique="true" columns="teacher_id"/>
       <index name="mainapp_subject_19363b59" unique="true" columns="clazz_id"/>
     </table>
@@ -256,7 +229,6 @@
       <column name="user_id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
       <primary-key columns="id"/>
       <foreign-key name="#FAKE_mainapp_teacher_1" columns="user_id" ref-table="auth_user" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <exported-key name="#FAKE_mainapp_subject_1" table="mainapp_subject" schema="" catalog="" columns="teacher_id"/>
       <exported-key name="#FAKE_mainapp_subject_1" table="mainapp_subject" schema="" catalog="" columns="teacher_id"/>
       <exported-key name="#FAKE_mainapp_subject_1" table="mainapp_subject" schema="" catalog="" columns="teacher_id"/>
     </table>

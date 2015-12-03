@@ -1,6 +1,6 @@
-from django.contrib.auth.hashers import check_password
+from django.contrib.auth.hashers import check_password, make_password
 from django.contrib.auth.models import User
-from mainapp.models import Class, Student, Remark, Lesson, Subject
+from mainapp.models import Class, Student, Remark, Lesson, Subject, HashCode
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.http import JsonResponse
@@ -78,12 +78,29 @@ def addNewUser(request):
         response = HttpResponseRedirect('/register')
         for key in registerErrors.keys():
             response[key] = registerErrors[key]
+        print(registerErrors)
         return response
     else:
-        pass#TODO
+        pass
+        hashCode = HashCode.objects.get(code=request.POST['hashCode'])
+        if hashCode.userType == "teacher":
+            concreteUser = Teacher()
+        elif hashCode.userType == "student":
+            concreteUser = Student()
+            concreteUser.clazz = hashCode.studentClazz
+        else:
+            concreteUser = Parent()
+        newUser = User()
+        newUser.username = request.POST['username']
+        newUser.email = request.POST['email']
+        newUser.first_name = hashCode.name
+        newUser.last_name = hashCode.surname
+        newUser.password = make_password(request.POST['password'])
+        newUser.save()
+        concreteUser.user = newUser
+        concreteUser.save()
+        hashCode.delete()
 
-    # Some registration logic here
-    
     return home(request)
 
 def remark(request):
