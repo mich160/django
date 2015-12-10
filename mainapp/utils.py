@@ -7,9 +7,6 @@ def isLogged(request):
     else:
         return False
 
-<<<<<<< HEAD
-def isStudent(user):
-=======
 def validateNewUserData(request):
     errors = {}
     username = request.POST['username']
@@ -17,7 +14,8 @@ def validateNewUserData(request):
     emailRepeated = request.POST['emailRep']
     hashcode = request.POST['hashCode']
 
-    if not username:# mozna zastapic jakimis funkcjami walidacji pól np wykorzystujace regexy
+    if not username:
+	# mozna zastapic jakimis funkcjami walidacji pól np wykorzystujace regexy
         errors['username'] = 'Wrong username'
     if not email:
         errors['email'] = 'Wrong email'
@@ -42,7 +40,6 @@ def validateNewUserData(request):
     return errors
 
 def isStudent(username):
->>>>>>> 140edefad21075ec518aabd38918b1605d0533f5
     try:
         u = User.objects.get(username=user)
          
