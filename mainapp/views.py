@@ -1,15 +1,15 @@
-from django.contrib.auth.hashers import check_password
+from django.contrib.auth.hashers import check_password, make_password
 from django.contrib.auth.models import User
-from models import Class, Student, Remark, Lesson, Subject
+from mainapp.models import Class, Student, Remark, Lesson, Subject, HashCode
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render_to_response, render
+from django.shortcuts import render
 from django.http import JsonResponse
 
 
 # Create your views here.
 
 from mainapp.models import Teacher, Student, Parent
-from mainapp.utils import isLogged
+from mainapp.utils import isLogged, validateNewUserData
 
 
 def home(request):
@@ -61,7 +61,7 @@ def redirectLogged(request):
     return response
 
 
-def logout(request):  # TODO usuwanie sesji
+def logout(request):
     request.session.flush()
     return HttpResponseRedirect('/')
 
@@ -73,9 +73,37 @@ def register(request):
     return render(request, 'register.html')
 
 def addNewUser(request):
-    
-    # Some registration logic here
-    
+    registerErrors = validateNewUserData(request)
+    if registerErrors.keys():
+        response = HttpResponseRedirect('/register')
+        for key in registerErrors.keys():
+            response[key] = registerErrors[key]
+        print(registerErrors)
+        return response
+    else:
+        pass
+        hashCode = HashCode.objects.get(code=request.POST['hashCode'])
+        newUser = User()
+        newUser.username = request.POST['username']
+        newUser.email = request.POST['email']
+        newUser.first_name = hashCode.name
+        newUser.last_name = hashCode.surname
+        newUser.password = make_password(request.POST['password'])
+        newUser.save()
+        if hashCode.teacher:
+            hashCode.teacher.user = newUser
+            hashCode.teacher.tempFullName = ''
+            hashCode.teacher.save()
+        if hashCode.student:
+            hashCode.student.user = newUser
+            hashCode.student.tempFullName = ''
+            hashCode.student.save()
+        if hashCode.parent:
+            hashCode.parent.user = newUser
+            hashCode.parent.tempFullName = ''
+            hashCode.parent.save()
+        hashCode.delete()
+
     return home(request)
 
 def remark(request):
