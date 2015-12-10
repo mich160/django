@@ -20,7 +20,7 @@ def fetchClasses(request):
 @register.filter
 def fetchChilds(request):
     uname = request.session["username"]
-    if(utils.isStudent(uname)):
+    if utils.isStudent(uname):
         return [uname]
     else:
         u = User.objects.get(username = uname)
@@ -42,7 +42,4 @@ def fetchRemarks(uname):
         singleRemark['lesson'] = str(remark.lesson)
         singleRemark['info'] = str(remark.info.encode('utf-8'))
         remarkArr.append(singleRemark)
-    
-    
-    
     return remarkArr

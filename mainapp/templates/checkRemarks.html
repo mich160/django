@@ -20,12 +20,8 @@
 						</tr>
 						{% for remark in child|fetchRemarks %}
 						<tr>
-							<td>
-							{{ remark.lesson }}
-							</td>
-							<td>
-								{{remark.info}}
-							</td>
+							<td> {{ remark.lesson }} </td>
+							<td> {{remark.info}} </td>
 						</tr>
 						{% endfor %}
 					</table>
