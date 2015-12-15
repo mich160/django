@@ -5,7 +5,9 @@ html, body, container-table {
 	background: linear-gradient(to right, rgba(255, 255, 255, 0),
 	rgba(230, 230, 240, 1));
 }
-
+textarea{
+	width: 100%;
+}
 .container {
 	width: auto;
 	padding: 0;
@@ -27,6 +29,10 @@ html, body, container-table {
 
 .topMargin100 {
 	margin-top: 100px;
+}
+
+.topMargin10 {
+	margin-top: 10px;
 }
 
 .textStyle {

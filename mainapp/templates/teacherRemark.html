@@ -1,100 +1,37 @@
 {% extends "base.html" %}
 {% block content %}
 {% load navtag %}
-
+{% load staticfiles %}
 <!-- get all teacher classes
 then fetch students
 and show textarea -->
-
+<script src="{% static 'js/teacherRemarkjs.js' %}"></script>
 <div class="container">
 	<div class="row">
-		<div class=" col-md-offset-1 col-md-2">
-			<div class="form-group">
-				
-				<select class="form-control classSelection">
+
+		<div class=" col-md-6">
+			<div class="panel panel-default">
+				<div class="panel-heading">Uwaga</div>
+
+				<li class="list-group-item"><select class="form-control classSelection">
 
 					{% for cls in request|fetchClasses %}
 					<option value={{ cls }} > {{ cls }} </option>
 					{% endfor %}
 
-				</select>
+				</select></li>
 			
-				<select class="form-control peopleSelection" multiple>
+				<li class="list-group-item"><select class="form-control peopleSelection" multiple>
 
-				</select>
+				</select></li>
 				
-				<textarea class="remarkText" rows="4" cols="50">
-					Wpisz uwagę
-				</textarea>
-				<div class="infoDiv">
-					
-				</div>
-				<button class="btn btn-default saveRemark">Zapisz uwagę</button>
+				<li class="list-group-item"><textarea class="remarkText" rows="4" placeholder="Wpisz uwagę">
 
-				<script>
-					function getCookie(cname) {
-   						var name = cname + "=";
-    					var ca = document.cookie.split(';');
-    					for(var i=0; i<ca.length; i++) {
-        					var c = ca[i];
-        					while (c.charAt(0)==' ') c = c.substring(1);
-        					if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
-    					}
-    				return "";
-					}
-					var csrftoken=getCookie("csrftoken");
-					function csrfSafeMethod(method) {
-						return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-					}
-					$.ajaxSetup({
-						beforeSend: function(xhr,settings) {
-							if(!csrfSafeMethod(settings.type)&&!this.crossDomain) {
-								xhr.setRequestHeader("X-CSRFToken",csrftoken);
-							}
-						}
-					});
-					
-					$(".classSelection").change(function() {
-					managePeopleSelector();
-					});
-					var managePeopleSelector= function() {
-					var classSelected=$(".classSelection").val().trim();
-					
-					
-					$.post("fetchPeopleFromClass", {classSelected: classSelected}, function(data) {
-						var interestingData = data.studentsList;
-						var selectionElem =	$(".peopleSelection");
-						for(c in interestingData) {
-							var newOption = $("<option>");
-							newOption.attr('value', interestingData[c]);
-							newOption.text(interestingData[c]);
-							selectionElem.append(newOption);
-						}
-						
-						});
-					};
-					
-					$(".saveRemark").click(function() {
-						var selectedStudents=$(".peopleSelection").val();
-						if(selectedStudents != null) {
-						var remarkText = $(".remarkText").val().trim();
-						var classSelected=$(".classSelection").text().trim();
-						
-						console.log(selectedStudents);
-						
-						$.post("saveRemark", {remarkText: remarkText, clazz: classSelected, students: selectedStudents}, function() {
-							$(".infoDiv").text("Uwaga zapisana");
-							$(".infoDiv").attr("class", "alert alert-success");
-						})
-							
-						}
-					});
-					
-					
-					
-					managePeopleSelector();
-					$("textarea").text($("textarea").text().trim())
-				</script>
+				</textarea></li>
+				<li class="list-group-item"><button class="btn btn-default saveRemark">Zapisz uwagę</button>
+                <div class="infoDiv topMargin10">
+
+				</div></li>
 			</div>
 		</div>
 	</div>
