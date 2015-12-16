@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^addNewUser', 'mainapp.views.addNewUser'),
     url(r'^remark', 'mainapp.views.remark'),
     url(r'^fetchPeopleFromClass', 'mainapp.views.fetchPeopleFromClass'),
-    url(r'^saveRemark', 'mainapp.views.saveRemark')
-
+    url(r'^saveRemark', 'mainapp.views.saveRemark'),
+    url(r'^grade', 'mainapp.views.grade'),
+    url(r'^saveGrade', 'mainapp.views.saveGrade')
 ]

@@ -145,9 +145,31 @@ def saveRemark(request):
     return HttpResponse('')
         
     
+def grade(request):
+    if request.session["type"] == "teacher":
+        return render(request, "teacherGrades.html")
+    else:
+        return render(request, "checkGrades.html")
     
-    
-    
+def saveGrade(request):
+    forWhat = request.POST["forWhat"]
+    # This is here for extending utility purposes
+    clz = request.POST["clazz"]
+    students = request.POST.getlist("students[]")
+    tchr = request.session["username"]
+    grade = request.POST["grade"]
+
+    u = User.objects.get(username=tchr)
+    t = Teacher.objects.get(user=u)
+    sub = Subject.objects.get(name="Math")
+    l = Lesson.objects.get(subject=sub)
+
+    for s in students:
+        u1 = User.objects.get(username=s)
+        s = Student.objects.get(user=u1)
+        grade.objects.create(lesson=l, student=s, info=grade)
+
+    return HttpResponse('')
     
     
     
