@@ -1,6 +1,6 @@
 from django.contrib.auth.hashers import check_password, make_password
 from django.contrib.auth.models import User
-from mainapp.models import Class, Student, Remark, Lesson, Subject, HashCode
+from mainapp.models import Class, Student, Remark, Lesson, Subject, HashCode, Grade
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.http import JsonResponse
@@ -167,7 +167,7 @@ def saveGrade(request):
     for s in students:
         u1 = User.objects.get(username=s)
         s = Student.objects.get(user=u1)
-        grade.objects.create(lesson=l, student=s, info=grade)
+        Grade.objects.create(grade=grade, lesson=l, student=s, forWhat=forWhat)
 
     return HttpResponse('')
     

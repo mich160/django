@@ -44,7 +44,7 @@ $( document ).ready(function() {
 						});
 					};
 
-					$(".save").click(function() {
+					$(".saveGrade").click(function() {
 						var selectedStudents=$(".peopleSelection").val();
 						if(selectedStudents != null) {
 						var forWhat = $(".forWhat").val().trim();
@@ -53,7 +53,7 @@ $( document ).ready(function() {
 						console.log(selectedStudents);
 
 						$.post("saveGrade", {forWhat: forWhat, clazz: classSelected, students: selectedStudents, grade: gradeSelection}, function() {
-							$(".infoDiv").text("Uwaga zapisana");
+							$(".infoDiv").text("Ocena zapisana");
 							$(".infoDiv").attr("class", "alert alert-success");
 						})
 
