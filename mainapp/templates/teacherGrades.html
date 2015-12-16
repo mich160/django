@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+{% load navtag %}
+{% load staticfiles %}
+<!-- get all teacher classes
+then fetch students
+and show textarea -->
+<script src="{% static 'js/teacherGradesjs.js' %}"></script>
+<div class="container">
+	<div class="row">
+
+		<div class=" col-md-6">
+			<div class="panel panel-default">
+				<div class="panel-heading">Uwaga</div>
+
+				<li class="list-group-item"><select class="form-control classSelection">
+
+					{% for cls in request|fetchClasses %}
+					<option value={{ cls }} > {{ cls }} </option>
+					{% endfor %}
+
+				</select></li>
+			
+				<li class="list-group-item"><select class="form-control peopleSelection" multiple>
+
+				</select></li>
+				<li class="list-group-item"><select class="form-control gradeSelection">
+                    <option>1</option>
+                    <option>1+</option>
+                    <option>2-</option>
+                    <option>2</option>
+                    <option>2+</option>
+                    <option>3-</option>
+                    <option>3</option>
+                    <option>3+</option>
+                    <option>4-</option>
+                    <option>4</option>
+                    <option>4+</option>
+                    <option>5-</option>
+                    <option>5</option>
+                    <option>5+</option>
+                    <option>6-</option>
+                    <option>6</option> </select></li>
+				<li class="list-group-item"><textarea class="forWhat" rows="4" placeholder="Uzasadnienie" maxlength="100">
+
+				</textarea></li>
+				<li class="list-group-item"><button class="btn btn-default saveGrade">Zapisz ocenę</button>
+                <div class="infoDiv topMargin10">
+
+				</div></li>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
