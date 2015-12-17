@@ -37,9 +37,9 @@ class Student(models.Model):
     user = models.OneToOneField(User, related_name='student', on_delete=models.CASCADE, null=True, blank=True)
     parents = models.ManyToManyField(Parent, blank=True)
 
-    def getGrades(self):
+    def getGradesWithSubjects(self):
         # test: student = Student.objects.first()
-        # print(student.getGrades())
+        # print(student.getGradesWithSubjects())
         # print(student.getRemarks())
         # print(student.getAbsences())
         result = {}
