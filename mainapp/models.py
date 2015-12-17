@@ -37,6 +37,21 @@ class Student(models.Model):
     user = models.OneToOneField(User, related_name='student', on_delete=models.CASCADE, null=True, blank=True)
     parents = models.ManyToManyField(Parent, blank=True)
 
+    def getGrades(self):
+        result = {}
+        grades = Grade.objects.filter(student = self)
+        for grade in grades:
+            lesson = Lesson.objects.filter(grade=grade).first()
+            subject = lesson.subject
+            try:
+                if result[subject]:
+                    pass
+            except:
+                result[subject] = []
+            result[subject].append(grade)
+        return result
+
+
     def __str__(self):
         if not self.user:
             return str(self.tempFullName)

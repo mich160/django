@@ -13,6 +13,8 @@ from mainapp.utils import isLogged, validateNewUserData
 
 
 def home(request):
+    #student = Student.objects.first()
+    #print(student.getGrades())
     if isLogged(request):
         return HttpResponseRedirect("/redirect")
     return render(request, 'login.html')
@@ -149,12 +151,14 @@ def grade(request):
     if request.session["type"] == "teacher":
         return render(request, "teacherGrades.html")
     else:
-        return render(request, "checkGrades.html")
+
+        result = render(request, "checkGrades.html")
+
+        return result
     
 def saveGrade(request):
     forWhat = request.POST["forWhat"]
     # This is here for extending utility purposes
-    clz = request.POST["clazz"]
     students = request.POST.getlist("students[]")
     tchr = request.session["username"]
     grade = request.POST["grade"]

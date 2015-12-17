@@ -1,3 +1,39 @@
 {% extends "base.html" %}
 {% block content %}
 {% load navtag %}
+
+<div class="container">
+	<div class="row">
+		<div class="  col-md-7">
+			<div class="form-group">
+				{% for child in request|fetchChilds %}
+
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">{{ child }}</h3>
+					</div>
+
+					<table class="table">
+						<tr>
+							<td> Lekcja </td>
+							<td> Oceny </td>
+						</tr>
+						{% for grade in child|fetchRemarks %}
+						<tr>
+							<td> {{ grade.lesson }} </td>
+							<td> {{grade.grade}} </td>
+						</tr>
+						{% endfor %}
+					</table>
+
+				</div>
+
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+{% endblock %}
