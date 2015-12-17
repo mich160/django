@@ -38,19 +38,25 @@ class Student(models.Model):
     parents = models.ManyToManyField(Parent, blank=True)
 
     def getGrades(self):
+        # test: student = Student.objects.first()
+        # print(student.getGrades())
+        # print(student.getRemarks())
+        # print(student.getAbsences())
         result = {}
-        grades = Grade.objects.filter(student = self)
+        grades = Grade.objects.filter(student=self)
         for grade in grades:
             lesson = Lesson.objects.filter(grade=grade).first()
             subject = lesson.subject
-            try:
-                if result[subject]:
-                    pass
-            except:
+            if subject not in result:
                 result[subject] = []
             result[subject].append(grade)
         return result
 
+    def getRemarks(self):
+        return Remark.objects.filter(student=self)
+
+    def getAbsences(self):
+        return Absence.objects.filter(student=self)
 
     def __str__(self):
         if not self.user:

@@ -13,8 +13,6 @@ from mainapp.utils import isLogged, validateNewUserData
 
 
 def home(request):
-    #student = Student.objects.first()
-    #print(student.getGrades())
     if isLogged(request):
         return HttpResponseRedirect("/redirect")
     return render(request, 'login.html')
