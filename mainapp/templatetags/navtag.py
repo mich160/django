@@ -55,5 +55,12 @@ def fetchParents(request):
     teacherClasses = currentTeacher.getClasses()
     students = []
     parents = set()
-    #TODO
+    for clazz in teacherClasses:
+        clazzStudents = clazz.getStudents()
+        for student in clazzStudents:
+            students.append(student)
+    for student in students:
+        studentParents = student.parents.all()
+        for parent in studentParents:
+            parents.add(parent)
     return parents
