@@ -200,3 +200,6 @@ def sendMail(request):
     else:
         sendMail(fromWho, toWho, subject, body)
         return render(request, 'sendMail.html')
+
+def settings(request):
+    return render(request, 'settings.html')
