@@ -11,10 +11,10 @@ from mainapp.utils import isLogged, validateNewUserData, sendEMail
 
 
 def home(request):
-    student = Student.objects.first()
-    print(student.getGradesWithSubjects)
-    print(student.getRemarks())
-    print(student.getAbsences())
+    #student = Student.objects.first()
+    #print(student.getGradesWithSubjects)
+    #print(student.getRemarks())
+    #print(student.getAbsences())
     if isLogged(request):
         return HttpResponseRedirect("/redirect")
     return render(request, 'login.html')
@@ -181,10 +181,17 @@ def saveGrade(request):
 
 
 def sendMail(request):
-    fromWhoUsername = request.session['username']
-    toWhoUsername = request.GET['toWho']
-    subject = request.GET['subject']
-    body = request.GET['body']
+    try:
+        fromWhoUsername = request.session['username']
+        toWhoUsername = request.GET['toWho']
+        subject = request.GET['mailSubject']
+        body = request.GET['mailBody']
+    except:
+        fromWhoUsername = ''
+        toWhoUsername = ''
+        subject = ''
+        body = ''
+
     fromWho = None
     toWho = None
 
@@ -192,12 +199,15 @@ def sendMail(request):
         try:
             fromWho = User.objects.get(username=request.session['username'])
             toWho = User.objects.get(username=request.GET['toWho'])
+            sendEMail(fromWho, toWho, subject, body)
+            return render(request, 'sendMail.html')
         except:
             response = render(request, 'sendMail.html')
             response['errors'] = 'Wrong user data!'
-            return render(request, 'sendMail.html')
+            return response
     else:
-        sendEMail(fromWho, toWho, subject, body)
+        response = render(request, 'sendMail.html')
+        response['errors'] = 'Wrong data!'
         return render(request, 'sendMail.html')
 
 def settings(request):
