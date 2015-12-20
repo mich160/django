@@ -1,4 +1,4 @@
-html, body, container-table {
+html, body {
 	height: 100%;
 	max-width: 1600px;
 	margin: auto;
@@ -7,14 +7,6 @@ html, body, container-table {
 }
 textarea{
 	width: 100%;
-}
-.container {
-	width: auto;
-	padding: 0;
-}
-.container .text-muted {
-	margin: 20px 0;
-	padding-left: 15px;;
 }
 
 .nonLogged {
@@ -43,12 +35,12 @@ textarea{
 	background: linear-gradient(rgba(215,215,215,0.6), rgba(28,28,28,0.7));
 }
 
-label {
+.loginLabel {
 	color: white;
 	font-size: 16px;
 }
 
-.label {
+.loginTitle {
 	color: rgb(45,45,45);
 	font-size: 24px;
 }
