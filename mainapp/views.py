@@ -19,7 +19,6 @@ def home(request):
         return HttpResponseRedirect("/redirect")
     return render(request, 'login.html')
 
-
 def authenticate(request):  # todo url dla przekierowania i autoryzacji
     response = HttpResponseRedirect("/")
     response['wrongVals'] = 'true'
@@ -203,3 +202,9 @@ def sendMail(request):
 
 def settings(request):
     return render(request, 'settings.html')
+
+def remark(request):
+    if request.session["type"] == "teacher":
+        return render(request, "teacherAbsences.html")
+    else:
+        return render(request, "checkAbsences.html")
