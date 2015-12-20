@@ -23,6 +23,19 @@ $( document ).ready(function() {
 							}
 						}
 					});
+					$(".changePassword").click(function(){
+						concole.log("trololo");
+						var oldPassword=document.getElementById("passwordOld");
+						var newPassword=document.getElementById("passwordReg");
+						var newPassword2=document.getElementById("passwordRegRep");
 
+					});
+					$(".changeMail").click(function(){
+						concole.log("chyba dziala");
+						var newMail=document.getElementById("emailReg");
+						var newMail2=document.getElementById("emailRegRep");
+						var password=document.getElementById("password");
+						
+					});
 
 });
