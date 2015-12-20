@@ -5,6 +5,9 @@ from django.db import models
 class Class(models.Model):
     name = models.CharField(max_length=30)
 
+    def getStudents(self):
+        return Student.objects.filter(clazz=self)
+
     def __str__(self):
         return self.name
 
@@ -12,6 +15,16 @@ class Class(models.Model):
 class Teacher(models.Model):
     tempFullName = models.CharField(max_length=70, null=True, blank=True)
     user = models.OneToOneField(User, related_name='teacher', on_delete=models.CASCADE, null=True, blank=True)
+
+    def getSubjects(self):
+        return Subject.objects.filter(teacher=self)
+
+    def getClasses(self):
+        subjects = self.getSubjects()
+        result = set()
+        for subject in subjects:
+            result.add(subject.clazz)
+        return result
 
     def __str__(self):
         if not self.user:
@@ -36,6 +49,7 @@ class Parent(models.Model):
             return str(self.tempFullName)
         else:
             return str(self.user)
+
 
 
 class Student(models.Model):

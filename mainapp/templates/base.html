@@ -66,9 +66,12 @@
 						</li>
 						{% if request.session.type == "teacher" %}
 						<li>
-							<a href="">Napisz wiadomość do rodzica</a>
+							<a href="sendMail">Napisz wiadomość do rodzica</a>
 						</li>
 						{% endif %}
+                        <li>
+                             <a href="settings" class="pull-right">Ustawienia</a>
+                        </li>
 						{% else %}
 						<li>
 							<a href="admin"> Admin </a>

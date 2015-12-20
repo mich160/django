@@ -4,12 +4,10 @@ from mainapp.models import Class, Student, Remark, Lesson, Subject, HashCode, Gr
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.http import JsonResponse
-
-
 # Create your views here.
 
 from mainapp.models import Teacher, Student, Parent
-from mainapp.utils import isLogged, validateNewUserData
+from mainapp.utils import isLogged, validateNewUserData, sendEMail
 
 
 def home(request):
@@ -73,8 +71,10 @@ def logout(request):
 def index(request):
     return render(request, 'index.html')
 
+
 def register(request):
     return render(request, 'register.html')
+
 
 def addNewUser(request):
     registerErrors = validateNewUserData(request)
@@ -110,24 +110,26 @@ def addNewUser(request):
 
     return home(request)
 
+
 def remark(request):
     if request.session["type"] == "teacher":
         return render(request, "teacherRemark.html")
     else:
         return render(request, "checkRemarks.html")
-    
+
+
 def fetchPeopleFromClass(request):
-    
     selectedClass = request.POST["classSelected"]
     c = Class.objects.get(name=selectedClass)
     u = Student.objects.filter(clazz=c)
     l = []
     for item in u:
         l.append(str(item))
-        
+
     # tutaj powinno wysylac username(do option value) + imie i nazwisko(do wyswietlenia) 
-    
-    return JsonResponse({ 'studentsList': l })
+
+    return JsonResponse({'studentsList': l})
+
 
 def saveRemark(request):
     remarkText = request.POST["remarkText"]
@@ -135,20 +137,20 @@ def saveRemark(request):
     clz = request.POST["clazz"]
     students = request.POST.getlist("students[]")
     tchr = request.session["username"]
-    
+
     u = User.objects.get(username=tchr)
     t = Teacher.objects.get(user=u)
     sub = Subject.objects.get(name="Math")
     l = Lesson.objects.get(subject=sub)
-    
-    for s in students: 
+
+    for s in students:
         u1 = User.objects.get(username=s)
         s = Student.objects.get(user=u1)
         Remark.objects.create(lesson=l, student=s, info=remarkText)
-    
+
     return HttpResponse('')
-        
-    
+
+
 def grade(request):
     if request.session["type"] == "teacher":
         return render(request, "teacherGrades.html")
@@ -157,7 +159,8 @@ def grade(request):
         result = render(request, "checkGrades.html")
 
         return result
-    
+
+
 def saveGrade(request):
     forWhat = request.POST["forWhat"]
     # This is here for extending utility purposes
@@ -176,11 +179,27 @@ def saveGrade(request):
         Grade.objects.create(grade=grade, lesson=l, student=s, forWhat=forWhat)
 
     return HttpResponse('')
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+def sendMail(request):
+    fromWhoUsername = request.session['username']
+    toWhoUsername = request.GET['toWho']
+    subject = request.GET['subject']
+    body = request.GET['body']
+    fromWho = None
+    toWho = None
+
+    if fromWhoUsername and toWhoUsername and subject and body:
+        try:
+            fromWho = User.objects.get(username=request.session['username'])
+            toWho = User.objects.get(username=request.GET['toWho'])
+        except:
+            response = render(request, 'sendMail.html')
+            response['errors'] = 'Wrong user data!'
+            return render(request, 'sendMail.html')
+    else:
+        sendEMail(fromWho, toWho, subject, body)
+        return render(request, 'sendMail.html')
+
+def settings(request):
+    return render(request, 'settings.html')

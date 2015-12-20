@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+{% load navtag %}
+{% load staticfiles %}
+<div class="container">
+	<div class="row">
+		<div class=" col-md-6">
+			<div class="panel panel-default">
+				<div class="panel-heading">Wyślij e-mail do rodzica</div>
+                <li class="list-group-item"><select class="form-control classSelection">
+
+					{% for parent in request|fetchParents %}
+					parent
+					{% endfor %}
+
+				</select></li>
+                </div>
+            </div>
+        </div>
+</div>
+{% endblock %}

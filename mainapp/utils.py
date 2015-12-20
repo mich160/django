@@ -1,5 +1,7 @@
 from django.contrib.auth.models import User
 from mainapp.models import Teacher, Student, HashCode
+from django.core.mail import send_mail
+
 
 
 def isLogged(request):
@@ -49,3 +51,7 @@ def isStudent(user):
         return True
     except:
         return False
+
+
+def sendEMail(fromWho, toWho, subject, body):
+    send_mail(fromWho.first_name + " " + fromWho.last_name + ":" + subject, body,'placeholder@mail.com',[toWho.email], False, 'user', 'password')

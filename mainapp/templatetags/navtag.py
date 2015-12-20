@@ -5,15 +5,17 @@ from django.http import JsonResponse
 
 register = template.Library()
 
+
 @register.filter
 def fetchClasses(request):
-    u = User.objects.get(username = request.session["username"])
-    t = Teacher.objects.get(user = u)
-    s = Subject.objects.filter(teacher = t).values('clazz')
-    c = Class.objects.get(subject = s)
+    u = User.objects.get(username=request.session["username"])
+    t = Teacher.objects.get(user=u)
+    s = Subject.objects.filter(teacher=t).values('clazz')
+    c = Class.objects.get(subject=s)
     tab = []
     tab.append(c);
     return tab
+
 
 @register.filter
 def fetchChilds(request):
@@ -32,12 +34,11 @@ def fetchGrades(child):
         s = Student.objects.get(user=u)
         return s.getGradesWithSubjects
 
-
-@register.filter 
+@register.filter
 def fetchRemarks(uname):
-    u = User.objects.get(username = uname)
-    s = Student.objects.get(user = u)
-    r = Remark.objects.filter(student = s)
+    u = User.objects.get(username=uname)
+    s = Student.objects.get(user=u)
+    r = Remark.objects.filter(student=s)
     remarkArr = []
     for remark in r:
         singleRemark = {}
@@ -45,3 +46,14 @@ def fetchRemarks(uname):
         singleRemark['info'] = str(remark.info.encode('utf-8'))
         remarkArr.append(singleRemark)
     return remarkArr
+
+
+@register.filter
+def fetchParents(request):
+    user = User.objects.get(username=request.session["username"])
+    currentTeacher = Teacher.objects.get(user=user)
+    teacherClasses = currentTeacher.getClasses()
+    students = []
+    parents = set()
+    #TODO
+    return parents
