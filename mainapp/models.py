@@ -24,6 +24,13 @@ class Parent(models.Model):
     tempFullName = models.CharField(max_length=70, null=True, blank=True)
     user = models.OneToOneField(User, related_name='parent', on_delete=models.CASCADE, null=True, blank=True)
 
+    def fetchChild(self):
+        children = Student.objects.filter(parents=self)
+        studentList = []
+        for item in children:
+            studentList.append(item.user.username)
+        return studentList
+
     def __str__(self):
         if not self.user:
             return str(self.tempFullName)
@@ -37,6 +44,7 @@ class Student(models.Model):
     user = models.OneToOneField(User, related_name='student', on_delete=models.CASCADE, null=True, blank=True)
     parents = models.ManyToManyField(Parent, blank=True)
 
+    @property
     def getGradesWithSubjects(self):
         # test: student = Student.objects.first()
         # print(student.getGradesWithSubjects())
@@ -44,12 +52,14 @@ class Student(models.Model):
         # print(student.getAbsences())
         result = {}
         grades = Grade.objects.filter(student=self)
-        for grade in grades:
-            lesson = Lesson.objects.filter(grade=grade).first()
-            subject = lesson.subject
-            if subject not in result:
-                result[subject] = []
-            result[subject].append(grade)
+
+        subjects = Subject.objects.filter(clazz=self.clazz)
+        for subject in subjects:
+            result[subject] = [];
+            lesson = Lesson.objects.filter(subject=subject)
+            grades = Grade.objects.filter(lesson = lesson, student=self)
+            for grade in grades:
+                    result[subject].append(grade)
         return result
 
     def getRemarks(self):
@@ -90,7 +100,6 @@ class Grade(models.Model):
 
     def __str__(self):
         return str(self.grade) + " " + str(self.lesson) + " " + str(self.student)
-
 
 class Absence(models.Model):
     lesson = models.ForeignKey(Lesson)
