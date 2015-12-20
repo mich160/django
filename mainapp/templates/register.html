@@ -1,54 +1,67 @@
 {% extends "base.html" %}
 {% block content %}
+    {% load staticfiles %}
+    <script src="{% static 'js/validation.js' %}"></script>
+    <script src="{% static 'js/register.js' %}"></script>
 
-<div class='nonLogged'>
-	<div class='container'>
-		<div class="col-xs-8 col-xs-offset-2 col-lg-4 col-lg-offset-4 textStyle topMargin100">
-			<div class="text-center">
-				<p class = "label">
-					<b>Dziennik szkolny</b>
-				</p>
-				<form action="/addNewUser" method="post">
-					{% csrf_token %}
-					<div class="form-group">
-						<label for="login">Login:</label>
-						<input class=
-						"form-control" id="login" type="text" name="username">
-					</div>
-					<div class="form-group">
-						<label for="password">Hasło:</label>
-						<input class=
-						"form-control" id="password" type="password" name="password">
-					</div>
-					<div class="form-group">
-						<label for="password">Powtórz hasło:</label>
-						<input class=
-						"form-control" id="passwordRep" type="password" name="passwordRep">
-					</div>
-					<div class="form-group">
-						<label for="password">E-mail:</label>
-						<input class=
-						"form-control" id="email" type="email" name="email">
-					</div>
-					<div class="form-group">
-						<label for="password">Powtórz e-mail:</label>
-						<input class=
-						"form-control" id="emailRep" type="email" name="emailRep">
-					</div>
-					<div class="form-group">
-						<label for="password">Kod:</label>
-						<input class=
-						"form-control" id="hashCode" type="text" name="hashCode">
-					</div>
-					<input class="btn btn-default" type="submit"
-					value="Rejestruj">
-					<button class="btn btn-default cancelRegistration">
-						Anuluj
-					</button>
-				</form>
-			</div>
-		</div>
-	</div>
-</div>
+    <div class='nonLogged'>
+        <div class='container'>
+            <div class="col-xs-8 col-xs-offset-2 col-lg-4 col-lg-offset-4 textStyle topMargin100">
+                <div class="text-center">
+                    <p class="label">
+                        <b>Dziennik szkolny</b>
+                    </p>
+
+                    <form class="regForm" action="/addNewUser" method="post" onsubmit="return validateRegisterForm()">
+                        {% csrf_token %}
+                        <div class="form-group ">
+
+                            <label for="login">Login: {{ request }}</label>
+                            <input class="form-control" id="usernameReg" type="text" name="username"
+                                   data-toggle="tooltip" data-placement="left"
+                                   title="">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Hasło:</label>
+                            <input class="form-control" id="passwordReg" type="password" name="password"
+                                   data-toggle="tooltip" data-placement="left"
+                                   title="">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Powtórz hasło:</label>
+                            <input class="form-control" id="passwordRegRep" type="password" name="passwordRep"
+                                   data-toggle="tooltip" data-placement="left"
+                                   title="">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">E-mail:</label>
+                            <input class="form-control" id="emailReg" type="text" name="email" data-toggle="tooltip"
+                                   data-placement="left"
+                                   title="">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Powtórz e-mail:</label>
+                            <input class="form-control" id="emailRegRep" type="text" name="emailRep"
+                                   data-toggle="tooltip" data-placement="left"
+                                   title="">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Kod:</label>
+                            <input class="form-control" id="hashCode" type="text" name="hashCode" data-toggle="tooltip"
+                                   data-placement="left"
+                                   title="">
+                        </div>
+                        <input class="btn btn-default" type="submit"
+                               value="Rejestruj" \>
+
+                        <button type="button" class="btn btn-default cancelRegistration">
+                            Anuluj
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
