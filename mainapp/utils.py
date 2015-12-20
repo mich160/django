@@ -54,5 +54,5 @@ def isStudent(user):
         return False
 
 
-def sendMail(fromWho, toWho, subject, body):
+def sendEMail(fromWho, toWho, subject, body):
     send_mail(fromWho.first_name + " " + fromWho.last_name + ":" + subject, body,'placeholder@mail.com',[toWho.email], False, 'user', 'password');
