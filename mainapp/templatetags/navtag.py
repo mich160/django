@@ -1,6 +1,6 @@
 from django import template
 from mainapp import utils
-from mainapp.models import User, Teacher, Subject, Class, Student, Remark, Parent
+from mainapp.models import User, Teacher, Subject, Class, Student, Remark, Parent, Grade
 from django.http import JsonResponse
 
 
@@ -43,3 +43,4 @@ def fetchRemarks(uname):
         singleRemark['info'] = str(remark.info.encode('utf-8'))
         remarkArr.append(singleRemark)
     return remarkArr
+
