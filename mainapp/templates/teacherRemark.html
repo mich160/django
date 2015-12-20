@@ -1,40 +1,51 @@
 {% extends "base.html" %}
 {% block content %}
-{% load navtag %}
-{% load staticfiles %}
-<!-- get all teacher classes
-then fetch students
-and show textarea -->
-<script src="{% static 'js/teacherRemarkjs.js' %}"></script>
-<div class="container">
-	<div class="row">
+    {% load navtag %}
+    {% load staticfiles %}
+    <!-- get all teacher classes
+    then fetch students
+    and show textarea -->
+    <script src="{% static 'js/postAjaxUtility.js' %}"></script>
+    <script src="{% static 'js/gradeAndRemarkAjax.js' %}"></script>
+    <div class="container-fluid">
+        <div class="row">
 
-		<div class=" col-md-6">
-			<div class="panel panel-default">
-				<div class="panel-heading">Uwaga</div>
+            <div class=" col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Uwaga</div>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <label for="classSelection">Wybierz klasę</label>
+                            <select id="classSelect" class="form-control classSelection">
 
-				<li class="list-group-item"><select class="form-control classSelection">
+                                {% for cls in request|fetchClasses %}
+                                    <option value={{ cls }}> {{ cls }} </option>
+                                {% endfor %}
 
-					{% for cls in request|fetchClasses %}
-					<option value={{ cls }} > {{ cls }} </option>
-					{% endfor %}
+                            </select></li>
 
-				</select></li>
-			
-				<li class="list-group-item"><select class="form-control peopleSelection" multiple>
+                        <li class="list-group-item">
+                            <label for="studentSelect">Wybierz uczniów</label>
+                            <select id="studentSelect" class="form-control peopleSelection" multiple>
 
-				</select></li>
-				
-				<li class="list-group-item"><textarea class="remarkText form-control" rows="4" placeholder="Wpisz uwagę">
+
+                            </select></li>
+
+                        <li class="list-group-item">
+                             <label for="remarkText">Treść uwagi:</label>
+                            <textarea id="remarkText" class="remarkText" rows="4" placeholder="Wpisz tekst">
 
 				</textarea></li>
-				<li class="list-group-item"><button class="btn btn-default saveRemark">Zapisz uwagę</button>
-                <div class="infoDiv topMargin10">
+                        <li class="list-group-item">
+                            <button class="btn btn-default saveRemark">Zapisz uwagę</button>
+                            <div class="infoDiv topMargin10">
 
-				</div></li>
-			</div>
-		</div>
-	</div>
-</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

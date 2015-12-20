@@ -11,13 +11,14 @@ from mainapp.utils import isLogged, validateNewUserData, sendEMail
 
 
 def home(request):
-    #student = Student.objects.first()
-    #print(student.getGradesWithSubjects)
-    #print(student.getRemarks())
-    #print(student.getAbsences())
+    # student = Student.objects.first()
+    # print(student.getGradesWithSubjects)
+    # print(student.getRemarks())
+    # print(student.getAbsences())
     if isLogged(request):
         return HttpResponseRedirect("/redirect")
     return render(request, 'login.html')
+
 
 def authenticate(request):  # todo url dla przekierowania i autoryzacji
     response = HttpResponseRedirect("/")
@@ -181,11 +182,15 @@ def saveGrade(request):
 
 
 def sendMail(request):
+    return render(request, 'sendMail.html')
+
+
+def sendMailServ(request):
     try:
         fromWhoUsername = request.session['username']
-        toWhoUsername = request.GET['toWho']
-        subject = request.GET['mailSubject']
-        body = request.GET['mailBody']
+        toWhoUsername = request.POST['toWho']
+        subject = request.POST['mailSubject']
+        body = request.POST['mailBody']
     except:
         fromWhoUsername = ''
         toWhoUsername = ''
@@ -197,23 +202,20 @@ def sendMail(request):
 
     if fromWhoUsername and toWhoUsername and subject and body:
         try:
-            fromWho = User.objects.get(username=request.session['username'])
-            toWho = User.objects.get(username=request.GET['toWho'])
+            fromWho = User.objects.get(username=fromWhoUsername)
+            toWho = User.objects.get(toWhoUsername)
             sendEMail(fromWho, toWho, subject, body)
-            return render(request, 'sendMail.html')
         except:
-            response = render(request, 'sendMail.html')
-            response['errors'] = 'Wrong user data!'
-            return response
-    else:
-        response = render(request, 'sendMail.html')
-        response['errors'] = 'Wrong data!'
-        return render(request, 'sendMail.html')
+            return HttpResponse(status=500)
+
+    return HttpResponse('')
+
 
 def settings(request):
     return render(request, 'settings.html')
 
-def remark(request):
+
+def absence(request):
     if request.session["type"] == "teacher":
         return render(request, "teacherAbsences.html")
     else:
