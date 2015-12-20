@@ -113,10 +113,13 @@ a:hover {
 	display:None;
 }
 
+.gradesCell {
+	width:75%;
+}
 
-
-
-
+.lessonCell {
+	width:25%;
+}
 
 
 

@@ -1,38 +1,45 @@
 {% extends "base.html" %}
 {% block content %}
-{% load navtag %}
+    {% load navtag %}
 
-<div class="container">
-	<div class="row">
-		<div class="  col-md-7">
-			<div class="form-group">
-				{% for child in request|fetchChilds %}
+    <div class="container">
+        <div class="row">
+            <div class="  col-md-7">
+                <div class="form-group">
 
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">{{ child }}</h3>
-					</div>
+                    {% for child in request|fetchChilds %}
 
-					<table class="table">
-						<tr>
-							<td> Lekcja </td>
-							<td> Oceny </td>
-						</tr>
-						{% for grade in child|fetchRemarks %}
-						<tr>
-							<td> {{ grade.lesson }} </td>
-							<td> {{grade.grade}} </td>
-						</tr>
-						{% endfor %}
-					</table>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">{{ child }}</h3>
+                            </div>
 
-				</div>
+                            <table class="table">
+                                <tr>
+                                    <td> Lekcja</td>
+                                    <td> Oceny</td>
+                                </tr>
+                                {% with gradeMap=child|fetchGrades %}
+                                    {% for lesson, grades in gradeMap.items %}
+                                        <tr>
+                                            <td class="lessonCell"> {{ lesson }} </td>
+                                            <td class="gradesCell">
+                                            {% for g in grades %}
+                                                <div title="{{ g.forWhat }}"> {{ g.grade }} </div>
+                                            {% endfor %}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                {% endwith %}
+                            </table>
 
-				{% endfor %}
-			</div>
-		</div>
-	</div>
-</div>
+                        </div>
+
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 

@@ -14,7 +14,7 @@ from mainapp.utils import isLogged, validateNewUserData
 
 def home(request):
     student = Student.objects.first()
-    print(student.getGradesWithSubjects())
+    print(student.getGradesWithSubjects)
     print(student.getRemarks())
     print(student.getAbsences())
     if isLogged(request):

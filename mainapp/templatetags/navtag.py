@@ -3,8 +3,6 @@ from mainapp import utils
 from mainapp.models import User, Teacher, Subject, Class, Student, Remark, Parent
 from django.http import JsonResponse
 
-
-
 register = template.Library()
 
 @register.filter
@@ -25,12 +23,16 @@ def fetchChilds(request):
     else:
         u = User.objects.get(username = uname)
         p = Parent.objects.get(user = u)
-        s = Student.objects.filter(parents = p)
-        studentList = []
-        for item in s:
-            studentList.append(item.user.username)
-    return studentList
-   
+    return p.fetchChild()
+
+@register.filter
+def fetchGrades(child):
+    if utils.isStudent(child):
+        u = User.objects.get(username = child)
+        s = Student.objects.get(user=u)
+        return s.getGradesWithSubjects
+
+
 @register.filter 
 def fetchRemarks(uname):
     u = User.objects.get(username = uname)

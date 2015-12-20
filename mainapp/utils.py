@@ -45,9 +45,7 @@ def validateNewUserData(request):
 def isStudent(user):
     try:
         u = User.objects.get(username=user)
-
         s = Student.objects.get(user=u)
         return True
     except:
-        raise
         return False
