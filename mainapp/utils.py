@@ -39,7 +39,7 @@ def validateNewUserData(request):
 
     return errors
 
-def isStudent(username):
+def isStudent(user):
     try:
         u = User.objects.get(username=user)
          
