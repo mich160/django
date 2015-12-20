@@ -7,7 +7,7 @@ from django.http import JsonResponse
 # Create your views here.
 
 from mainapp.models import Teacher, Student, Parent
-from mainapp.utils import isLogged, validateNewUserData, sendEMail
+from mainapp.utils import isLogged, validateNewUserData, sendMail
 
 
 def home(request):
@@ -182,30 +182,24 @@ def saveGrade(request):
 
 
 def sendMail(request):
-    try:
-        fromWhoUsername = request.session['username']
-        toWhoUsername = request.POST['toWho']
-        subject = request.POST['subject']
-        body = request.POST['body']
-    except:
-        fromWhoUsername = ''
-        toWhoUsername = ''
-        subject = ''
-        body = ''
-
+    fromWhoUsername = request.session['username']
+    toWhoUsername = request.GET['toWho']
+    subject = request.GET['subject']
+    body = request.GET['body']
     fromWho = None
     toWho = None
 
     if fromWhoUsername and toWhoUsername and subject and body:
         try:
-            fromWho = User.objects.get(fromWhoUsername)
-            toWho = User.objects.get(toWhoUsername)
-            sendEMail(fromWho, toWho, subject, body)
-            return render(request, 'sendMail.html')
+            fromWho = User.objects.get(username=request.session['username'])
+            toWho = User.objects.get(username=request.GET['toWho'])
         except:
             response = render(request, 'sendMail.html')
             response['errors'] = 'Wrong user data!'
             return render(request, 'sendMail.html')
     else:
+        sendMail(fromWho, toWho, subject, body)
         return render(request, 'sendMail.html')
 
+def settings(request):
+    return render(request, 'settings.html')
