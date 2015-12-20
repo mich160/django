@@ -1,11 +1,14 @@
 from django.contrib.auth.models import User
 from mainapp.models import Teacher, Student, HashCode
+from django.core.mail import send_mail
+
 
 def isLogged(request):
     if 'username' in request.session:
         return True
     else:
         return False
+
 
 def validateNewUserData(request):
     errors = {}
@@ -15,7 +18,7 @@ def validateNewUserData(request):
     hashcode = request.POST['hashCode']
 
     if not username:
-	# mozna zastapic jakimis funkcjami walidacji pól np wykorzystujace regexy
+        # mozna zastapic jakimis funkcjami walidacji pól np wykorzystujace regexy
         errors['username'] = 'Wrong username'
     if not email:
         errors['email'] = 'Wrong email'
@@ -39,13 +42,17 @@ def validateNewUserData(request):
 
     return errors
 
+
 def isStudent(user):
     try:
         u = User.objects.get(username=user)
-         
-        s = Student.objects.get(user = u)
+
+        s = Student.objects.get(user=u)
         return True
     except:
-        raise 
+        raise
         return False
-    
+
+
+def sendMail(fromWho, toWho, subject, body):
+    send_mail(fromWho.first_name + " " + fromWho.last_name + ":" + subject, body,'placeholder@mail.com',[toWho.email], False, 'user', 'password');
