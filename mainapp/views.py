@@ -186,6 +186,7 @@ def sendMail(request):
 
 
 def sendMailServ(request):
+    print("mail service")
     try:
         fromWhoUsername = request.session['username']
         toWhoUsername = request.POST['toWho']

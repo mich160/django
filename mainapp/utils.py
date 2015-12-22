@@ -3,7 +3,6 @@ from mainapp.models import Teacher, Student, HashCode
 from django.core.mail import send_mail
 
 
-
 def isLogged(request):
     if 'username' in request.session:
         return True
@@ -54,4 +53,9 @@ def isStudent(user):
 
 
 def sendEMail(fromWho, toWho, subject, body):
-    send_mail(fromWho.first_name + " " + fromWho.last_name + ":" + subject, body,'placeholder@mail.com',[toWho.email], False, 'user', 'password')
+    if send_mail(fromWho.first_name + " " + fromWho.last_name + ":" + subject, body, 'placeholder@mail.com',
+                 [toWho.email],
+                 False, 'user', 'password') == 1:
+        print("E-mail sent properly.")
+    else:
+        print("Couldn't send e-mail!")
