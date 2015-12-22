@@ -15,12 +15,13 @@ urlpatterns = [
     url(r'^grade', 'mainapp.views.grade'),
     url(r'^saveGrade', 'mainapp.views.saveGrade'),
     url(r'^sendMail', 'mainapp.views.sendMail'),
-    url(r'^sendMailServ', 'mainapp.views.sendMailServ'),
-    url(r'^settings', 'mainapp.views.settings'),
     url(r'^absences', 'mainapp.views.absences'),
     url(r'^fetchClassSubject', 'mainapp.views.fetchClassSubject'),
     url(r'^fetchClassesLessons', 'mainapp.views.fetchClassesLessons'),
     url(r'^fetchLessonAbsence', 'mainapp.views.fetchLessonAbsence'),
-    url(r'^submitAbsences', 'mainapp.views.submitAbsences')
-
+    url(r'^submitAbsences', 'mainapp.views.submitAbsences'),
+    url(r'^mailServ', 'mainapp.views.sendMailServ'),
+    url(r'^settings', 'mainapp.views.settings'),
+    url(r'^changePassword', 'mainapp.views.settings'),
+    url(r'^changeMail', 'mainapp.views.settings')
 ]

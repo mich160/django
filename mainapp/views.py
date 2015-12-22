@@ -1,5 +1,7 @@
 from django.contrib.auth.hashers import check_password, make_password
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
+
 from mainapp.models import Class, Student, Remark, Lesson, Subject, HashCode, Grade
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
@@ -8,6 +10,7 @@ import json
 # Create your views here.
 
 from mainapp.models import Teacher, Student, Parent, Absence
+from mainapp.models import Teacher, Student, Parent
 from mainapp.utils import isLogged, validateNewUserData, sendEMail
 
 
@@ -16,6 +19,9 @@ def home(request):
     # print(student.getGradesWithSubjects)
     # print(student.getRemarks())
     # print(student.getAbsences())
+    send_mail("sfasfsa" + " " + "fsfsafas" + ":" + "hehehe", "siusiak!", 'djangoschool@wp.pl',
+              ["swetru@yopmail.com"],
+              False)
     if isLogged(request):
         return HttpResponseRedirect("/redirect")
     return render(request, 'login.html')
@@ -183,6 +189,7 @@ def sendMail(request):
 
 
 def sendMailServ(request):
+    print("mail service")
     try:
         fromWhoUsername = request.session['username']
         toWhoUsername = request.POST['toWho']
@@ -200,7 +207,7 @@ def sendMailServ(request):
     if fromWhoUsername and toWhoUsername and subject and body:
         try:
             fromWho = User.objects.get(username=fromWhoUsername)
-            toWho = User.objects.get(toWhoUsername)
+            toWho = User.objects.get(username=toWhoUsername)
             sendEMail(fromWho, toWho, subject, body)
         except:
             return HttpResponse(status=500)
@@ -279,7 +286,6 @@ def submitAbsences(request):
     date = request.POST['lessonDate']
     abs = json.loads(request.POST["absMap"])
 
-
     c = Class.objects.get(name=clazz)
     s = Subject.objects.get(name=subj, clazz=c)
     l = Lesson.objects.get(subject=s, date=date)
@@ -289,7 +295,6 @@ def submitAbsences(request):
         stud = Student.objects.get(user=studUser)
 
         if abs[a] == 'true':
-
 
             try:
                 Absence.objects.get(lesson=l, student=stud)
@@ -307,5 +312,26 @@ def submitAbsences(request):
             except:
                 continue
 
-
     return HttpResponse('')
+
+
+def changePassword(request):
+    oldPswd = request.POST["oldPswd"]
+    newPswd = make_password(request.POST["newPswd"])
+    u = User.objects.get()
+    if check_password(oldPswd, u.password):
+        u.password = newPswd
+        return HttpResponse('')
+    else:
+        return HttpResponse(status=400)
+
+
+def changeMail(request):
+    pswd = request.POST["pswd"]
+    mail = request.POST["mail"]
+    u = User.objects.get()
+    if check_password(pswd, u.password):
+        u.email = mail
+        return HttpResponse('')
+    else:
+        return HttpResponse(status=400)
