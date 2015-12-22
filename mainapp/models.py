@@ -51,7 +51,6 @@ class Parent(models.Model):
             return str(self.user)
 
 
-
 class Student(models.Model):
     tempFullName = models.CharField(max_length=70, null=True, blank=True)
     clazz = models.ForeignKey(Class)
@@ -71,9 +70,9 @@ class Student(models.Model):
         for subject in subjects:
             result[subject] = [];
             lesson = Lesson.objects.filter(subject=subject)
-            grades = Grade.objects.filter(lesson = lesson, student=self)
+            grades = Grade.objects.filter(lesson=lesson, student=self)
             for grade in grades:
-                    result[subject].append(grade)
+                result[subject].append(grade)
         return result
 
     def getRemarks(self):
@@ -111,9 +110,11 @@ class Grade(models.Model):
     student = models.ForeignKey(Student)
     lesson = models.ForeignKey(Lesson)
     forWhat = models.CharField(max_length=100)
+    modifier = models.CharField(max_length=1)
 
     def __str__(self):
         return str(self.grade) + " " + str(self.lesson) + " " + str(self.student)
+
 
 class Absence(models.Model):
     lesson = models.ForeignKey(Lesson)
