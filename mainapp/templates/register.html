@@ -5,10 +5,10 @@
     <script src="{% static 'js/register.js' %}"></script>
 
     <div class='nonLogged'>
-        <div class='container'>
+        <div class='container-fluid'>
             <div class="col-xs-8 col-xs-offset-2 col-lg-4 col-lg-offset-4 textStyle topMargin100">
                 <div class="text-center">
-                    <p class="label">
+                    <p class="loginTitle">
                         <b>Dziennik szkolny</b>
                     </p>
 
@@ -16,37 +16,37 @@
                         {% csrf_token %}
                         <div class="form-group ">
 
-                            <label for="login">Login: {{ request }}</label>
+                            <label class="loginLabel" for="login">Login:</label>
                             <input class="form-control" id="usernameReg" type="text" name="username"
                                    data-toggle="tooltip" data-placement="left"
                                    title="">
                         </div>
                         <div class="form-group">
-                            <label for="password">Hasło:</label>
+                            <label class="loginLabel" for="password">Hasło:</label>
                             <input class="form-control" id="passwordReg" type="password" name="password"
                                    data-toggle="tooltip" data-placement="left"
                                    title="">
                         </div>
                         <div class="form-group">
-                            <label for="password">Powtórz hasło:</label>
+                            <label class="loginLabel" for="password">Powtórz hasło:</label>
                             <input class="form-control" id="passwordRegRep" type="password" name="passwordRep"
                                    data-toggle="tooltip" data-placement="left"
                                    title="">
                         </div>
                         <div class="form-group">
-                            <label for="password">E-mail:</label>
+                            <label class="loginLabel" for="password">E-mail:</label>
                             <input class="form-control" id="emailReg" type="text" name="email" data-toggle="tooltip"
                                    data-placement="left"
                                    title="">
                         </div>
                         <div class="form-group">
-                            <label for="password">Powtórz e-mail:</label>
+                            <label class="loginLabel" for="password">Powtórz e-mail:</label>
                             <input class="form-control" id="emailRegRep" type="text" name="emailRep"
                                    data-toggle="tooltip" data-placement="left"
                                    title="">
                         </div>
                         <div class="form-group">
-                            <label for="password">Kod:</label>
+                            <label class="loginLabel" for="password">Kod:</label>
                             <input class="form-control" id="hashCode" type="text" name="hashCode" data-toggle="tooltip"
                                    data-placement="left"
                                    title="">

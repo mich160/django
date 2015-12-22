@@ -2,28 +2,37 @@
 {% block content %}
     {% load navtag %}
     {% load staticfiles %}
-    <div class="container">
+    <script src="{% static 'js/postAjaxUtility.js' %}"></script>
+    <script src="{% static 'js/emailAjaxService.js' %}"></script>
+    <div class="container-fluid">
         <div class="row">
             <div class=" col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">Wyślij e-mail do rodzica</div>
-                    <li class="list-group-item">
-                        <select class="form-control classSelection">
-                            {% for parent in request|fetchParents %}
-                                <option value={{ parent }}> {{ parent }} </option>
-                            {% endfor %}
-                        </select>
-                    </li>
-                    <li class="list-group-item">
-                        <textarea class="mailSubject" rows="1" placeholder="Temat wiadomości"></textarea>
-                    </li>
-                    <li class="list-group-item">
-                        <textarea class="mailBody" rows="4" placeholder="Treść wiadomości"></textarea>
-                    </li>
-                    <li class="list-group-item">
-                        <button class="btn btn-default saveRemark">Wyślij wiadomość</button>
-                        <div class="infoDiv topMargin10"></div>
-                    </li>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                         <label for="parentSelect">Wybierz rodzica:</label>
+                            <select id="parentSelect" class="form-control parentSelect">
+
+                                {% for parent in request|fetchParents %}
+                                    <option value={{ parent }}> {{ parent }} </option>
+                                {% endfor %}
+                            </select>
+                        </li>
+                        <li class="list-group-item">
+                             <label for="mailSubject">Temat wiadomości</label>
+                            <textarea class="form-control mailSubject" rows="1" placeholder="Wpisz tekst"></textarea>
+                        </li>
+                        <li class="list-group-item">
+                             <label for="parentSelect">Treść wiadomości:</label>
+                            <textarea class="form-control mailBody" rows="4" placeholder="Wpisz tekst"></textarea>
+                        </li>
+                        <li class="list-group-item">
+                            <button class="btn btn-default sendMail">Wyślij wiadomość</button>
+                            <div class="infoDiv"></div>
+                        </li>
+
+                    </ul>
                 </div>
             </div>
         </div>

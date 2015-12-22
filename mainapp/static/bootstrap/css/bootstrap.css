@@ -245,7 +245,7 @@ th {
   .dropup > .btn > .caret {
     border-top-color: #000 !important;
   }
-  .label {
+  .loginTitle {
     border: 1px solid #000;
   }
   .table {
@@ -4890,7 +4890,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   cursor: not-allowed;
   background-color: #fff;
 }
-.label {
+.loginTitle {
   display: inline;
   padding: .2em .6em .3em;
   font-size: 75%;
@@ -4902,16 +4902,16 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   vertical-align: baseline;
   border-radius: .25em;
 }
-a.label:hover,
-a.label:focus {
+a.loginTitle:hover,
+a.loginTitle:focus {
   color: #fff;
   text-decoration: none;
   cursor: pointer;
 }
-.label:empty {
+.loginTitle:empty {
   display: none;
 }
-.btn .label {
+.btn .loginTitle {
   position: relative;
   top: -1px;
 }

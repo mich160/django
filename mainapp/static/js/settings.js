@@ -23,6 +23,52 @@ $( document ).ready(function() {
 							}
 						}
 					});
-
+					$(".changePassword").click(function(){
+						console.log("trololo");
+						var oldPassword=document.getElementById("passwordOld").value;
+						var newPassword=document.getElementById("passwordReg").value;
+						var newPassword2=document.getElementById("passwordRegRep").value;
+						console.log(newPassword);
+						if (oldPassword=="test"){
+							if(newPassword!="" && newPassword2!="") {
+								if (newPassword == newPassword2) {
+									$(".infoPass").text("Hasło zmienione");
+									$(".infoPass").attr("class", "alert alert-success infoDiv infoPass topMargin10");
+								} else {
+									$(".infoPass").text("Hasła nie są zgodne");
+									$(".infoPass").attr("class", "alert alert-warning infoDiv infoPass topMargin10");
+								}
+							}else{
+								$(".infoPass").text("Wpisz hasło");
+								$(".infoPass").attr("class", "alert alert-warning infoDiv infoPass topMargin10");
+							}
+						}else{
+							$(".infoPass").text("Błędne hasło");
+							$(".infoPass").attr("class","alert alert-warning infoDiv infoPass topMargin10");
+						}
+					});
+					$(".changeMail").click(function(){
+						console.log("chyba dziala");
+						var newMail=document.getElementById("emailReg").value;
+						var newMail2=document.getElementById("emailRegRep").value;
+						var password=document.getElementById("password").value;
+						if (password=="test"){
+							if(newMail!="" && newMail2!="") {
+								if (newMail == newMail2) {
+									$(".infoMail").text("Adres mailowy został zmieniony");
+									$(".infoMail").attr("class", "alert alert-success infoDiv infoMail topMargin10");
+								} else {
+									$(".infoMail").text("Adresy mailowe nie są zgodne");
+									$(".infoMail").attr("class", "alert alert-warning infoDiv infoMail topMargin10");
+								}
+							}else{
+								$(".infoMail").text("Wpisz maila");
+								$(".infoMail").attr("class", "alert alert-warning infoDiv infoMail topMargin10");
+							}
+						}else{
+							$(".infoMail").text("Błędne hasło");
+							$(".infoMail").attr("class","alert alert-warning infoDiv infoMail topMargin10");
+						}
+					});
 
 });
