@@ -2,8 +2,10 @@
  * Created by Targon on 20.12.2015.
  */
 $(document).ready(function () {
+
+    setupAjax();
+
     $(".changePassword").click(function () {
-        console.log("trololo");
         var oldPassword = document.getElementById("passwordOld").value;
         var newPassword = document.getElementById("passwordReg").value;
         var newPassword2 = document.getElementById("passwordRegRep").value;
