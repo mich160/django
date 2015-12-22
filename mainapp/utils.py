@@ -58,7 +58,7 @@ def sendEMail(fromWho, toWho, subject, body):
     print('mail')
     if send_mail(fromWho.first_name + " " + fromWho.last_name + ":" + subject, body, 'djangoschool@wp.pl',
                  [toWho.email],
-                 False, 'djangoschool', 'Szkieletowy') == 1:
+                 False) == 1:
         print("E-mail sent properly.")
     else:
         print("Couldn't send e-mail!")
