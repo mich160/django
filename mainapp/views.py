@@ -318,9 +318,10 @@ def submitAbsences(request):
 def changePassword(request):
     oldPswd = request.POST["oldPswd"]
     newPswd = make_password(request.POST["newPswd"])
-    u = User.objects.get()
-    if check_password(oldPswd, u.password):
-        u.password = newPswd
+    user = User.objects.get(username=request.session['username'])
+    if check_password(oldPswd, user.password):
+        user.password = newPswd
+        user.save()
         return HttpResponse('')
     else:
         return HttpResponse(status=400)
@@ -329,9 +330,10 @@ def changePassword(request):
 def changeMail(request):
     pswd = request.POST["pswd"]
     mail = request.POST["mail"]
-    u = User.objects.get()
-    if check_password(pswd, u.password):
-        u.email = mail
+    user = User.objects.get(username=request.session['username'])
+    if check_password(pswd, user.password):
+        user.email = mail
+        user.save()
         return HttpResponse('')
     else:
         return HttpResponse(status=400)
