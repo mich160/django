@@ -1,11 +1,11 @@
 from django.contrib.auth.hashers import check_password, make_password
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
+
 from mainapp.models import Class, Student, Remark, Lesson, Subject, HashCode, Grade
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.http import JsonResponse
-# Create your views here.
-
 from mainapp.models import Teacher, Student, Parent
 from mainapp.utils import isLogged, validateNewUserData, sendEMail
 
@@ -15,6 +15,9 @@ def home(request):
     # print(student.getGradesWithSubjects)
     # print(student.getRemarks())
     # print(student.getAbsences())
+    send_mail("sfasfsa" + " " + "fsfsafas" + ":" + "hehehe", "siusiak!", 'djangoschool@wp.pl',
+                 ["czarek.czernecki@gmail.com"],
+                 False, 'djangoschool', 'Szkieletowy')
     if isLogged(request):
         return HttpResponseRedirect("/redirect")
     return render(request, 'login.html')
