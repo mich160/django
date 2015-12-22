@@ -31,6 +31,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#EMAIL_HOST = 'smtp.wp.pl'
+EMAIL_HOST = 'smtp.yopmail.com'
+#EMAIL_HOST_USER = 'djangoschool@wp.pl'
+#EMAIL_HOST_PASSWORD = 'Szkieletowy'
+#EMAIL_PORT = 465
+EMAIL_USE_TLS = False
 
 INSTALLED_APPS = (
     'django.contrib.admin',

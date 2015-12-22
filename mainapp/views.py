@@ -16,8 +16,8 @@ def home(request):
     # print(student.getRemarks())
     # print(student.getAbsences())
     send_mail("sfasfsa" + " " + "fsfsafas" + ":" + "hehehe", "siusiak!", 'djangoschool@wp.pl',
-                 ["czarek.czernecki@gmail.com"],
-                 False, 'djangoschool', 'Szkieletowy')
+                 ["swetru@yopmail.com"],
+                 False)
     if isLogged(request):
         return HttpResponseRedirect("/redirect")
     return render(request, 'login.html')
