@@ -56,9 +56,8 @@ def isStudent(user):
 
 def sendEMail(fromWho, toWho, subject, body):
     print('mail')
-    if send_mail(fromWho.first_name + " " + fromWho.last_name + ":" + subject, body, 'djangoschool@wp.pl',
-                 [toWho.email],
-                 False) == 1:
+    mailSubject = fromWho.first_name + " " + fromWho.last_name + ":" + subject
+    if send_mail(mailSubject, body, 'djangoschool001@gmail.com', recipient_list=[toWho.email]) == 1:
         print("E-mail sent properly.")
     else:
         print("Couldn't send e-mail!")

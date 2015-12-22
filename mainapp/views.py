@@ -189,7 +189,6 @@ def sendMail(request):
 
 
 def sendMailServ(request):
-    print("mail service")
     try:
         fromWhoUsername = request.session['username']
         toWhoUsername = request.POST['toWho']
@@ -210,6 +209,7 @@ def sendMailServ(request):
             toWho = User.objects.get(username=toWhoUsername)
             sendEMail(fromWho, toWho, subject, body)
         except:
+            raise
             return HttpResponse(status=500)
 
     return HttpResponse('')
@@ -305,9 +305,7 @@ def submitAbsences(request):
                 absence.save()
         else:
             try:
-                print("dupa")
                 absence = Absence.objects.get(lesson=l, student=stud)
-                print("dupa")
                 absence.delete()
             except:
                 continue
