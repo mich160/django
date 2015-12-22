@@ -1,6 +1,3 @@
-/**
- * Created by Cezary on 20.12.2015.
- */
 $(document).ready(function () {
 
     setupAjax();
@@ -11,7 +8,7 @@ $(document).ready(function () {
         var msg = $(".mailBody").val();
 
         if (to != '' && subj != '' && msg != '') {
-            $.post("sendMailServ", {
+            $.post("mailServ", {
                 toWho: to,
                 mailSubject: subj,
                 mailBody: msg

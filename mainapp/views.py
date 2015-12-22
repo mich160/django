@@ -204,7 +204,7 @@ def sendMailServ(request):
     if fromWhoUsername and toWhoUsername and subject and body:
         try:
             fromWho = User.objects.get(username=fromWhoUsername)
-            toWho = User.objects.get(toWhoUsername)
+            toWho = User.objects.get(username=toWhoUsername)
             sendEMail(fromWho, toWho, subject, body)
         except:
             return HttpResponse(status=500)
