@@ -113,7 +113,11 @@ class Grade(models.Model):
     modifier = models.CharField(max_length=1)
 
     def __str__(self):
-        return str(self.modifier)+str(self.grade) + " " + str(self.lesson) + " " + str(self.student)
+        if(str(self.modifier) is not '0'):
+            return str(self.modifier)+str(self.grade) + " " + str(self.lesson) + " " + str(self.student)
+        else:
+            return str(self.grade) + " " + str(self.lesson) + " " + str(self.student)
+
 
 
 class Absence(models.Model):
