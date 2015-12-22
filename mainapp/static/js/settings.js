@@ -16,10 +16,13 @@ $(document).ready(function () {
             $.post("changePassword", {
                     oldPswd: oldPassword,
                     newPswd: newPassword
-                }, function () {
+                }.done( function () {
                     $(".infoPass").text("Zmiana hasła zapisana");
                     $(".infoPass").attr("class", "alert alert-success infoDiv infoPass topMargin10");
-                }
+                }).fail(function (){
+                    $(".infoPass").text("Błędne hasło");
+                    $(".infoPass").attr("class", "alert alert-warning infoDiv infoPass topMargin10");
+            })
             );
         } else {
             $(".infoPass").text(validMsg);
@@ -37,10 +40,13 @@ $(document).ready(function () {
             $.post("changeMail", {
                     pswd: password,
                     mail: newMail
-                }, function () {
+            }.done(function () {
                     $(".infoMail").text("Zmiana maila zapisana");
                     $(".infoMail").attr("class", "alert alert-success infoDiv infoMail topMargin10");
-                }
+                }).fail(function(){
+                    $(".infoMail").text("Błędne hasło");
+                    $(".infoMail").attr("class", "alert alert-warning infoDiv infoMail topMargin10");
+            })
             );
         } else {
             $(".infoMail").text(validMsg);
