@@ -81,15 +81,15 @@ $(document).ready(function () {
 
                 var row = $("<tr class='studentRow'>");
 
-                var studentName = $("<td>");
+                var studentName = $("<td class='studentName'>");
                 studentName.text(c);
-                var presentPlaceholder = $("<td>");
-                var absentPlaceholder = $("<td>");
+                var presentPlaceholder = $("<td class='presentPh'>");
+                var absentPlaceholder = $("<td class='absentPh'>");
 
-                var inputPresent = $("<input type='radio' name='" + c + "'>");
-                var inputAbsent = $("<input type='radio' name='" + c + "'>");
+                var inputPresent = $("<input type='radio' name='" + c + "' value='false'>");
+                var inputAbsent = $("<input type='radio' name='" + c + "' value='true'>");
 
-                if (interestingData[c] === false) {
+                if (interestingData[c] === true) {
                     inputAbsent.attr("checked", "checked");
                 } else {
                     inputPresent.attr("checked", "checked");
@@ -110,29 +110,38 @@ $(document).ready(function () {
 
             $(".sendAbs").click(function () {
                 var rows = $(".absDisplay .studentRow");
-                var absMap = {};
-                $.each(rows, function(index, item){
-                    
 
+                var classSelected = $(".classSelection").val().trim();
+                var subjectSelected = $(".subjectList").val().trim();
+                var lessonSelected = $(".lessonList").val().trim();
+                var lessonDate = lessonSelected.split(" ");
+                lessonDate = lessonDate[1] + " " + lessonDate[2];
+
+
+                var absMap = {};
+                $.each(rows, function (index, item) {
+
+                    var studentName = $(item).find(".studentName").text();
+                    var present = $(item).find("input:checked").val();
+
+                    absMap[studentName] = present;
 
                 })
 
+                $(this).addClass("disabled");
+                var that = this;
 
-
-
-
-
-
-
-
-
-
+                $.post("submitAbsences", {
+                    absMap: JSON.stringify(absMap),
+                    subjectSelected: subjectSelected,
+                    lessonDate: lessonDate,
+                    classSelected: classSelected
+                }, function () {
+                    $(that).removeClass("disabled");
+                });
 
 
             })
-
-
-
 
 
         });

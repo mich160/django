@@ -20,5 +20,7 @@ urlpatterns = [
     url(r'^absences', 'mainapp.views.absences'),
     url(r'^fetchClassSubject', 'mainapp.views.fetchClassSubject'),
     url(r'^fetchClassesLessons', 'mainapp.views.fetchClassesLessons'),
-    url(r'^fetchLessonAbsence', 'mainapp.views.fetchLessonAbsence')
+    url(r'^fetchLessonAbsence', 'mainapp.views.fetchLessonAbsence'),
+    url(r'^submitAbsences', 'mainapp.views.submitAbsences')
+
 ]

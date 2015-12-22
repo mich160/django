@@ -260,9 +260,9 @@ def fetchLessonAbsence(request):
 
     studentMap = {}
     for item in students:
-        absence=None
+        absence = None
         try:
-            absence= Absence.objects.get(lesson=l, student=item)
+            absence = Absence.objects.get(lesson=l, student=item)
         except:
             pass
         if absence is not None:
@@ -272,3 +272,40 @@ def fetchLessonAbsence(request):
 
     return HttpResponse(json.dumps(studentMap))
 
+
+def submitAbsences(request):
+    clazz = request.POST['classSelected']
+    subj = request.POST['subjectSelected']
+    date = request.POST['lessonDate']
+    abs = json.loads(request.POST["absMap"])
+
+
+    c = Class.objects.get(name=clazz)
+    s = Subject.objects.get(name=subj, clazz=c)
+    l = Lesson.objects.get(subject=s, date=date)
+
+    for a in abs:
+        studUser = User.objects.get(username=a)
+        stud = Student.objects.get(user=studUser)
+
+        if abs[a] == 'true':
+
+
+            try:
+                Absence.objects.get(lesson=l, student=stud)
+            except:
+                absence = Absence()
+                absence.lesson = l
+                absence.student = stud
+                absence.save()
+        else:
+            try:
+                print("dupa")
+                absence = Absence.objects.get(lesson=l, student=stud)
+                print("dupa")
+                absence.delete()
+            except:
+                continue
+
+
+    return HttpResponse('')
