@@ -220,3 +220,22 @@ def absence(request):
         return render(request, "teacherAbsences.html")
     else:
         return render(request, "checkAbsences.html")
+
+def changePassword(request):
+    oldPswd = request.POST["oldPswd"]
+    newPswd = make_password(request.POST["newPswd"])
+    u = User.objects.get()
+    if check_password(oldPswd, u.password):
+        u.password=newPswd
+        return HttpResponse('')
+    else:
+        return HttpResponse(status=400)
+def changeMail(request):
+    pswd = request.POST["pswd"]
+    mail = request.POST["mail"]
+    u=User.objects.get()
+    if check_password(pswd, u.password):
+        u.email=mail
+        return HttpResponse('')
+    else:
+        return HttpResponse(status=400)

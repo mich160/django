@@ -16,5 +16,7 @@ urlpatterns = [
     url(r'^saveGrade', 'mainapp.views.saveGrade'),
     url(r'^sendMail', 'mainapp.views.sendMail'),
     url(r'^sendMailServ', 'mainapp.views.sendMailServ'),
-    url(r'^settings', 'mainapp.views.settings')
+    url(r'^settings', 'mainapp.views.settings'),
+    url(r'^changePassword', 'mainapp.views.settings'),
+    url(r'^changeMail', 'mainapp.views.settings')
 ]
