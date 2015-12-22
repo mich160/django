@@ -95,7 +95,7 @@ class Subject(models.Model):
     teacher = models.ForeignKey(Teacher)
 
     def __str__(self):
-        return str(self.name) + str(self.clazz)
+        return str(self.name)
 
 
 class Lesson(models.Model):

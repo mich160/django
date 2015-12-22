@@ -27,12 +27,14 @@ def fetchChilds(request):
         p = Parent.objects.get(user = u)
     return p.fetchChild()
 
+
 @register.filter
 def fetchGrades(child):
     if utils.isStudent(child):
         u = User.objects.get(username = child)
         s = Student.objects.get(user=u)
         return s.getGradesWithSubjects
+
 
 @register.filter
 def fetchRemarks(uname):
@@ -64,3 +66,5 @@ def fetchParents(request):
         for parent in studentParents:
             parents.add(parent)
     return parents
+
+

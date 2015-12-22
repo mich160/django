@@ -4,9 +4,10 @@ from mainapp.models import Class, Student, Remark, Lesson, Subject, HashCode, Gr
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.http import JsonResponse
+import json
 # Create your views here.
 
-from mainapp.models import Teacher, Student, Parent
+from mainapp.models import Teacher, Student, Parent, Absence
 from mainapp.utils import isLogged, validateNewUserData, sendEMail
 
 
@@ -126,8 +127,6 @@ def fetchPeopleFromClass(request):
     for item in u:
         l.append(str(item))
 
-    # tutaj powinno wysylac username(do option value) + imie i nazwisko(do wyswietlenia) 
-
     return JsonResponse({'studentsList': l})
 
 
@@ -155,9 +154,7 @@ def grade(request):
     if request.session["type"] == "teacher":
         return render(request, "teacherGrades.html")
     else:
-
         result = render(request, "checkGrades.html")
-
         return result
 
 
@@ -215,8 +212,63 @@ def settings(request):
     return render(request, 'settings.html')
 
 
-def absence(request):
+def absences(request):
     if request.session["type"] == "teacher":
         return render(request, "teacherAbsences.html")
     else:
         return render(request, "checkAbsences.html")
+
+
+def fetchClassSubject(request):
+    teacher = request.session['username']
+    clazz = request.POST['classSelected']
+
+    u = User.objects.get(username=teacher)
+    t = Teacher.objects.get(user=u)
+    c = Class.objects.get(name=clazz)
+
+    subjectList = []
+    s = Subject.objects.filter(clazz=c, teacher=t)
+    for item in s:
+        subjectList.append(str(item))
+
+    return JsonResponse({'subjectList': subjectList})
+
+
+def fetchClassesLessons(request):
+    subject = request.POST['subjectSelected']
+
+    s = Subject.objects.get(name=subject)
+    l = Lesson.objects.filter(subject=s)
+    lessonList = []
+    for item in l:
+        lessonList.append(str(item))
+
+    return JsonResponse({'lessonList': lessonList})
+
+
+def fetchLessonAbsence(request):
+    clazz = request.POST['classSelected']
+    subj = request.POST['subjectSelected']
+    date = request.POST['lessonDate']
+
+    c = Class.objects.get(name=clazz)
+    s = Subject.objects.get(name=subj, clazz=c)
+
+    l = Lesson.objects.get(subject=s, date=date)
+    students = c.getStudents()
+
+    studentMap = {}
+    for item in students:
+        absence=None
+        try:
+            absence= Absence.objects.get(lesson=l, student=item)
+        except:
+            pass
+        if absence is not None:
+            studentMap[str(item)] = True
+        else:
+            studentMap[str(item)] = False
+
+    return HttpResponse(json.dumps(studentMap))
+

@@ -30,13 +30,15 @@ $(document).ready(function () {
         if (selectedStudents != null) {
             var forWhat = $(".forWhat").val().trim();
             var classSelected = $(".classSelection").text().trim();
-            var gradeSelection = $(".gradeSelection").val().trim();
+            var gradeSelection = $('.gradeSelection').val().trim();
+            var sign = $('.markSign').val().trim();
 
             $.post("saveGrade", {
                 forWhat: forWhat,
                 clazz: classSelected,
                 students: selectedStudents,
-                grade: gradeSelection
+                grade: gradeSelection,
+                sign: sign
             }, function () {
                 $(".infoDiv").text("Ocena zapisana");
                 $(".infoDiv").attr("class", "alert alert-success infoDiv topMargin10");

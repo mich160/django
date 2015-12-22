@@ -1,7 +1,66 @@
 {% extends "base.html" %}
 {% block content %}
+    {% load navtag %}
+    {% load staticfiles %}
+    <script src="{% static 'js/postAjaxUtility.js' %}"></script>
+    <script src="{% static 'js/absences.js' %}"></script>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class=" col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Sprawdzenie obecności tych gnojów</h3>
+                    </div>
+
+                    <ul class="list-group">
+
+                        <li class="list-group-item">
+                            <label for="classSelect">Wybierz klasę</label>
+                            <select id="classSelect" class="form-control classSelection">
+
+                                {% for cls in request|fetchClasses %}
+                                    <option value={{ cls }}> {{ cls }} </option>
+                                {% endfor %}
+
+                            </select>
+                        </li>
+
+                        <li class="list-group-item">
+                            <label for="subjectList">Wybierz lekcję</label>
+                            <select id="subjectList" class="form-control subjectList">
+
+                            </select>
+                        </li>
+
+                        <li class="list-group-item">
+                            <label for="lessonList">Wybierz lekcję</label>
+                            <select id="lessonList" class="form-control lessonList">
+
+                            </select>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default ">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Sprawdzaj</h3>
+                    </div>
+
+                    <table class="table table-striped absDisplay">
 
 
 
+                    </table>
+
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

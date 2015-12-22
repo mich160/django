@@ -13,7 +13,7 @@
                     <div class="panel-heading">Ocena</div>
                     <ul class="list-group">
                         <li class="list-group-item">
-                        <label for="classSelect">Wybierz klasę</label>
+                            <label for="classSelect">Wybierz klasę</label>
                             <select id="classSelect" class="form-control classSelection">
 
                                 {% for cls in request|fetchClasses %}
@@ -26,33 +26,32 @@
                             <label for="studentSelect">Wybierz uczniów</label>
                             <select id="studentSelect" class="form-control peopleSelection" multiple>
 
-                            </select></li>
+                            </select>
+                        </li>
                         <li class="list-group-item">
-                             <label for="markSelect">Wybierz ocenę</label>
 
+                            <label for="markSelect">Wybierz ocenę</label>
+                            <div class="form-inline">
                             <select id="markSelect" class="form-control gradeSelection">
-                            <option>1</option>
-                            <option>1+</option>
-                            <option>2-</option>
-                            <option>2</option>
-                            <option>2+</option>
-                            <option>3-</option>
-                            <option>3</option>
-                            <option>3+</option>
-                            <option>4-</option>
-                            <option>4</option>
-                            <option>4+</option>
-                            <option>5-</option>
-                            <option>5</option>
-                            <option>5+</option>
-                            <option>6-</option>
-                            <option>6</option>
-                        </select></li>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option selected>5</option>
+                                <option>6</option>
+                            </select>
+                             <select id="markSign" class="form-control markSign">
+                                <option> </option>
+                                <option>+</option>
+                                <option>-</option>
+                            </select>
+                            </div>
+                        </li>
                         <li class="list-group-item">
 
                             <label for="forWhat">Uzasadnienie wyroku</label>
                             <textarea id="forWhat" class="forWhat" rows="4" placeholder="Wpisz tekst"
-                                                              maxlength="100">
+                                      maxlength="100">
 
 				</textarea></li>
                         <li class="list-group-item">

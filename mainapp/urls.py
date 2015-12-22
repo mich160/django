@@ -2,9 +2,9 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^$','mainapp.views.home'),
+    url(r'^$', 'mainapp.views.home'),
     url(r'^authenticate', 'mainapp.views.authenticate'),
-    url(r'^redirect','mainapp.views.redirectLogged'),
+    url(r'^redirect', 'mainapp.views.redirectLogged'),
     url(r'^logout', 'mainapp.views.logout'),
     url(r'^index', 'mainapp.views.index'),
     url(r'^register', 'mainapp.views.register'),
@@ -16,5 +16,9 @@ urlpatterns = [
     url(r'^saveGrade', 'mainapp.views.saveGrade'),
     url(r'^sendMail', 'mainapp.views.sendMail'),
     url(r'^sendMailServ', 'mainapp.views.sendMailServ'),
-    url(r'^settings', 'mainapp.views.settings')
+    url(r'^settings', 'mainapp.views.settings'),
+    url(r'^absences', 'mainapp.views.absences'),
+    url(r'^fetchClassSubject', 'mainapp.views.fetchClassSubject'),
+    url(r'^fetchClassesLessons', 'mainapp.views.fetchClassesLessons'),
+    url(r'^fetchLessonAbsence', 'mainapp.views.fetchLessonAbsence')
 ]
