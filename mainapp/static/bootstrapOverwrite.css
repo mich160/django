@@ -125,6 +125,12 @@ a:hover {
 .absent {
     width: 15%;
 }
+.groupset{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 15px;
+    margin-bottom: 0px;
+}
 
 
 
