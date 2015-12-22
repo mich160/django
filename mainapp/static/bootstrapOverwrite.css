@@ -126,9 +126,7 @@ a:hover {
     width: 15%;
 }
 .groupset{
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 15px;
+    padding:10px 15px;
     margin-bottom: 0px;
 }
 
