@@ -1,11 +1,11 @@
 from django.contrib.auth.hashers import check_password, make_password
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
+
 from mainapp.models import Class, Student, Remark, Lesson, Subject, HashCode, Grade
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.http import JsonResponse
-# Create your views here.
-
 from mainapp.models import Teacher, Student, Parent
 from mainapp.utils import isLogged, validateNewUserData, sendEMail
 
@@ -15,6 +15,9 @@ def home(request):
     # print(student.getGradesWithSubjects)
     # print(student.getRemarks())
     # print(student.getAbsences())
+    send_mail("sfasfsa" + " " + "fsfsafas" + ":" + "hehehe", "siusiak!", 'djangoschool@wp.pl',
+                 ["swetru@yopmail.com"],
+                 False)
     if isLogged(request):
         return HttpResponseRedirect("/redirect")
     return render(request, 'login.html')
@@ -186,6 +189,7 @@ def sendMail(request):
 
 
 def sendMailServ(request):
+    print("mail service")
     try:
         fromWhoUsername = request.session['username']
         toWhoUsername = request.POST['toWho']
@@ -203,7 +207,7 @@ def sendMailServ(request):
     if fromWhoUsername and toWhoUsername and subject and body:
         try:
             fromWho = User.objects.get(username=fromWhoUsername)
-            toWho = User.objects.get(toWhoUsername)
+            toWho = User.objects.get(username=toWhoUsername)
             sendEMail(fromWho, toWho, subject, body)
         except:
             return HttpResponse(status=500)
