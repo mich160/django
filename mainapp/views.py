@@ -12,6 +12,7 @@ import json
 from mainapp.models import Teacher, Student, Parent, Absence
 from mainapp.models import Teacher, Student, Parent
 from mainapp.utils import isLogged, validateNewUserData, sendEMail
+from datetime import datetime
 
 
 def home(request):
@@ -19,9 +20,6 @@ def home(request):
     # print(student.getGradesWithSubjects)
     # print(student.getRemarks())
     # print(student.getAbsences())
-    send_mail("sfasfsa" + " " + "fsfsafas" + ":" + "hehehe", "siusiak!", 'djangoschool@wp.pl',
-              ["swetru@yopmail.com"],
-              False)
     if isLogged(request):
         return HttpResponseRedirect("/redirect")
     return render(request, 'login.html')
@@ -139,19 +137,16 @@ def fetchPeopleFromClass(request):
 def saveRemark(request):
     remarkText = request.POST["remarkText"]
     # This is here for extending utility purposes
-    clz = request.POST["clazz"]
     students = request.POST.getlist("students[]")
     tchr = request.session["username"]
 
     u = User.objects.get(username=tchr)
     t = Teacher.objects.get(user=u)
-    sub = Subject.objects.get(name="Math")
-    l = Lesson.objects.get(subject=sub)
 
     for s in students:
         u1 = User.objects.get(username=s)
         s = Student.objects.get(user=u1)
-        Remark.objects.create(lesson=l, student=s, info=remarkText)
+        Remark.objects.create(student=s, info=remarkText, date=datetime.now(), teacher=t)
 
     return HttpResponse('')
 
@@ -170,6 +165,8 @@ def saveGrade(request):
     students = request.POST.getlist("students[]")
     tchr = request.session["username"]
     grade = request.POST["grade"]
+    modifier = request.POST["modifier"]
+
 
     u = User.objects.get(username=tchr)
     t = Teacher.objects.get(user=u)
@@ -179,7 +176,7 @@ def saveGrade(request):
     for s in students:
         u1 = User.objects.get(username=s)
         s = Student.objects.get(user=u1)
-        Grade.objects.create(grade=grade, lesson=l, student=s, forWhat=forWhat)
+        Grade.objects.create(grade=grade, lesson=l, student=s, forWhat=forWhat, modifier=modifier)
 
     return HttpResponse('')
 

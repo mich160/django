@@ -15,13 +15,13 @@
 
 					<table class="table">
 						<tr>
-							<td> Lekcja </td>
+							<td> Wydawca </td>
 							<td> Uwaga </td>
 						</tr>
 						{% for remark in child|fetchRemarks %}
 						<tr>
-							<td> {{ remark.lesson }} </td>
-							<td> {{remark.info}} </td>
+							<td> {{ remark.teacher }} </td>
+							<td> {{ remark.info }} </td>
 						</tr>
 						{% endfor %}
 					</table>

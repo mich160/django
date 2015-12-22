@@ -129,12 +129,13 @@ class Absence(models.Model):
 
 
 class Remark(models.Model):
-    lesson = models.ForeignKey(Lesson)
     student = models.ForeignKey(Student)
     info = models.CharField(max_length=200)
+    teacher = models.ForeignKey(Teacher, null=True)
+    date = models.DateTimeField()
 
     def __str__(self):
-        return str(self.student) + " " + str(self.lesson)
+        return str(self.student)
 
 
 class HashCode(models.Model):

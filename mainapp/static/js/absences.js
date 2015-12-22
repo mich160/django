@@ -55,7 +55,8 @@ $(document).ready(function () {
         var subjectSelected = $(".subjectList").val().trim();
         var lessonSelected = $(".lessonList").val().trim();
         var lessonDate = lessonSelected.split(" ");
-        lessonDate = lessonDate[1] + " " + lessonDate[2];
+
+        lessonDate = lessonDate[lessonDate.length-2] + " " + lessonDate[lessonDate.length-1];
 
         $.post("fetchLessonAbsence", {
             classSelected: classSelected,
@@ -115,7 +116,7 @@ $(document).ready(function () {
                 var subjectSelected = $(".subjectList").val().trim();
                 var lessonSelected = $(".lessonList").val().trim();
                 var lessonDate = lessonSelected.split(" ");
-                lessonDate = lessonDate[1] + " " + lessonDate[2];
+                lessonDate = lessonDate[lessonDate.length-2] + " " + lessonDate[lessonDate.length-1];
 
 
                 var absMap = {};

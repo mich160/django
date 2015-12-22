@@ -44,8 +44,8 @@ def fetchRemarks(uname):
     remarkArr = []
     for remark in r:
         singleRemark = {}
-        singleRemark['lesson'] = str(remark.lesson)
-        singleRemark['info'] = str(remark.info.encode('utf-8'))
+        singleRemark['teacher']=str(remark.teacher.user.first_name + " " + remark.teacher.user.last_name)
+        singleRemark['info'] = str(remark.info)
         remarkArr.append(singleRemark)
     return remarkArr
 

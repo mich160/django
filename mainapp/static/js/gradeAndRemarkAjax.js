@@ -38,7 +38,7 @@ $(document).ready(function () {
                 clazz: classSelected,
                 students: selectedStudents,
                 grade: gradeSelection,
-                sign: sign
+                modifier: sign
             }, function () {
                 $(".infoDiv").text("Ocena zapisana");
                 $(".infoDiv").attr("class", "alert alert-success infoDiv topMargin10");
@@ -56,11 +56,8 @@ $(document).ready(function () {
             var remarkText = $(".remarkText").val().trim();
             var classSelected = $(".classSelection").text().trim();
 
-            console.log(selectedStudents);
-
             $.post("saveRemark", {
                 remarkText: remarkText,
-                clazz: classSelected,
                 students: selectedStudents
             }, function () {
                 $(".infoDiv").text("Uwaga zapisana");
