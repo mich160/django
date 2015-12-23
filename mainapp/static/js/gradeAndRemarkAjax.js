@@ -23,6 +23,19 @@ $(document).ready(function () {
             }
 
         });
+
+        $.post("fetchClassSubject", {classSelected: classSelected}, function (data) {
+            var interestingData = data.subjectList;
+            var selectionElem = $(".subjectList");
+            selectionElem.empty();
+            for (var c in interestingData) {
+                var newOption = $("<option>");
+                newOption.attr('value', interestingData[c]);
+                newOption.text(interestingData[c]);
+                selectionElem.append(newOption);
+            }
+        });
+
     };
 
     $(".saveGrade").click(function () {  // teacherGrades.html
@@ -30,12 +43,14 @@ $(document).ready(function () {
         if (selectedStudents != null) {
             var forWhat = $(".forWhat").val().trim();
             var classSelected = $(".classSelection").text().trim();
+            var subjectSelected = $(".subjectList").val().trim();
             var gradeSelection = $('.gradeSelection').val().trim();
             var sign = $('.markSign').val().trim();
 
             $.post("saveGrade", {
                 forWhat: forWhat,
                 clazz: classSelected,
+                subjectSelected : subjectSelected,
                 students: selectedStudents,
                 grade: gradeSelection,
                 modifier: sign

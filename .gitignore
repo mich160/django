@@ -3,3 +3,4 @@
 .project
 .pydevproject
 db.sqlite3
+mainapp/migrations

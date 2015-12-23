@@ -12,7 +12,7 @@ import json
 from mainapp.models import Teacher, Student, Parent, Absence
 from mainapp.models import Teacher, Student, Parent
 from mainapp.utils import isLogged, validateNewUserData, sendEMail
-from datetime import datetime
+from django.utils import timezone
 
 
 def home(request):
@@ -146,7 +146,7 @@ def saveRemark(request):
     for s in students:
         u1 = User.objects.get(username=s)
         s = Student.objects.get(user=u1)
-        Remark.objects.create(student=s, info=remarkText, date=datetime.now(), teacher=t)
+        Remark.objects.create(student=s, info=remarkText, date=timezone.now(), teacher=t)
 
     return HttpResponse('')
 
@@ -165,18 +165,20 @@ def saveGrade(request):
     students = request.POST.getlist("students[]")
     tchr = request.session["username"]
     grade = request.POST["grade"]
+    subject = request.POST["subjectSelected"]
     modifier = request.POST["modifier"]
-
 
     u = User.objects.get(username=tchr)
     t = Teacher.objects.get(user=u)
-    sub = Subject.objects.get(name="Math")
-    l = Lesson.objects.get(subject=sub)
 
+    sub = None
     for s in students:
         u1 = User.objects.get(username=s)
         s = Student.objects.get(user=u1)
-        Grade.objects.create(grade=grade, lesson=l, student=s, forWhat=forWhat, modifier=modifier)
+        if sub is None:
+            cl = Class.objects.get(student=s)
+            sub = Subject.objects.get(name=subject, teacher=t, clazz=cl)
+        Grade.objects.create(grade=grade, subject=sub, student=s, forWhat=forWhat, modifier=modifier, date=timezone.now())
 
     return HttpResponse('')
 

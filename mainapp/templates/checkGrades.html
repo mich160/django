@@ -25,7 +25,7 @@
                                             <td class="lessonCell"> {{ lesson }} </td>
                                             <td class="gradesCell">
                                             {% for g in grades %}
-                                                <div title="{{ g.forWhat }}"> {{ g.grade }} </div>
+                                                <span title="{{ g.forWhat }}"> {{ g.grade }}{{ g.modifier }} </span>
                                             {% endfor %}
                                             </td>
                                         </tr>

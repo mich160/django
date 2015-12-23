@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
     {% load navtag %}
-     {% load staticfiles %}
+    {% load staticfiles %}
     <script src="{% static 'js/settings.js' %}"></script>
     <script src="{% static 'js/validation.js' %}"></script>
     <script src="{% static 'js/postAjaxUtility.js' %}"></script>
@@ -9,59 +9,59 @@
         <div class="row">
             <div class=" col-md-6 changeCreds">
 
-
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Zarządzanie kontem</h3>
+                        Zarządzanie kontem
                     </div>
                 </div>
 
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Zmień hasło</h3>
+                        Zmień hasło
                     </div>
-                        <div class="form-group groupset">
-                            <label for="newPasswordRep">Stare hasło:</label>
-                            <input type="password" class="form-control" name="newPasswordRep" id="passwordOld">
+                    <div class="form-group groupset">
+                        <label for="newPasswordRep">Stare hasło:</label>
+                        <input type="password" class="form-control" name="newPasswordRep" id="passwordOld">
+                    </div>
+                    <div class="form-group groupset">
+                        <label for="newPassword">Nowe hasło:</label>
+                        <input type="password" class="form-control" name="newPassword" id="passwordReg">
+                    </div>
+                    <div class="form-group groupset">
+                        <label for="newPasswordRep">Powtórz hasło:</label>
+                        <input type="password" class="form-control" name="newPasswordRep" id="passwordRegRep">
+                    </div>
+                    <div class="form-group groupset">
+                        <button type="submit" class="btn btn-default changePassword" value="changePassword">Zmień
+                        </button>
+                        <div class="infoDiv infoPass topMargin10">
                         </div>
-                        <div class="form-group groupset">
-                            <label for="newPassword">Nowe hasło:</label>
-                            <input type="password" class="form-control" name="newPassword" id="passwordReg">
-                        </div>
-                        <div class="form-group groupset">
-                            <label for="newPasswordRep">Powtórz hasło:</label>
-                            <input type="password" class="form-control" name="newPasswordRep" id="passwordRegRep">
-                        </div>
-                        <div class="form-group groupset">
-                            <button type="submit" class="btn btn-default changePassword" value="changePassword">Zmień</button>
-                            <div class="infoDiv infoPass topMargin10" >
-                            </div>
-                        </div>
+                    </div>
                 </div>
 
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title" style='color: #000000'>Zmień email</h3>
+                        Zmień email
                     </div>
-                        <div class="form-group groupset">
+                    <div class="form-group groupset">
 
-                            <label for="newMail">Nowy email:</label>
-                            <input type="text" class="form-control" name="newMail" id="emailReg">
+                        <label for="newMail">Nowy email:</label>
+                        <input type="text" class="form-control" name="newMail" id="emailReg">
 
-                        </div>
-                        <div class="form-group groupset">
-                            <label for="newMailRep">Powtórz email:</label>
-                            <input type="text" class="form-control" name="newMailRep" id="emailRegRep">
-                        </div>
-                        <div class="form-group groupset">
-                            <label for="newPasswordRep">Hasło:</label>
-                            <input type="password" class="form-control" name="newPasswordRep" id="password"></div>
+                    </div>
+                    <div class="form-group groupset">
+                        <label for="newMailRep">Powtórz email:</label>
+                        <input type="text" class="form-control" name="newMailRep" id="emailRegRep">
+                    </div>
+                    <div class="form-group groupset">
+                        <label for="newPasswordRep">Hasło:</label>
+                        <input type="password" class="form-control" name="newPasswordRep" id="password"></div>
 
-                        <div class="form-group groupset">
-                            <button type="submit" class="btn btn-default changeMail" value="changeMail">Zmień</button>
-                            <div class="infoDiv infoMail topMargin10" >
-                            </div>
+                    <div class="form-group groupset">
+                        <button type="submit" class="btn btn-default changeMail" value="changeMail">Zmień</button>
+                        <div class="infoDiv infoMail topMargin10">
                         </div>
+                    </div>
                 </div>
             </div>
         </div>
