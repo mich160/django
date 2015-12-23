@@ -42,7 +42,7 @@ class Parent(models.Model):
         studentList = []
         for item in children:
             if item.user is not None:
-                studentList.append(item.user.username)
+                studentList.append(item.tempFullName)
         return studentList
 
     def __str__(self):
@@ -79,13 +79,14 @@ class Student(models.Model):
         return Remark.objects.filter(student=self)
 
     def getAbsences(self):
-        return Absence.objects.filter(student=self)
+        abs = Absence.objects.filter(student=self)
+        result = {}
+        for a in abs:
+            result[a.lesson.subject.name] = a.lesson.date
+        return result
 
     def __str__(self):
-        if not self.user:
             return str(self.tempFullName)
-        else:
-            return str(self.user)
 
 
 class Subject(models.Model):
@@ -119,14 +120,12 @@ class Grade(models.Model):
         else:
             return str(self.grade) + " " + str(self.subject) + " " + str(self.student)
 
-
-
 class Absence(models.Model):
     lesson = models.ForeignKey(Lesson)
     student = models.ForeignKey(Student)
 
     def __str__(self):
-        return str(self.lesson) + str(self.student)
+        return str(self.lesson) + " " + str(self.student)
 
 
 class Remark(models.Model):

@@ -5,15 +5,19 @@ from django.http import JsonResponse
 
 register = template.Library()
 
-
 @register.filter
 def fetchClasses(request):
     u = User.objects.get(username=request.session["username"])
     t = Teacher.objects.get(user=u)
-    s = Subject.objects.filter(teacher=t).values('clazz')
-    c = Class.objects.get(subject=s)
+    s = Subject.objects.filter(teacher=t).distinct()
+    for abc in s:
+        print(abc)
+        c = Class.objects.filter(subject=abc)
+        print(c)
     tab = []
-    tab.append(c);
+    for cls in c:
+        tab.append(cls)
+    print(tab)
     return tab
 
 
@@ -21,7 +25,8 @@ def fetchClasses(request):
 def fetchChilds(request):
     uname = request.session["username"]
     if utils.isStudent(uname):
-        return [uname]
+        u = User.objects.get(username = uname)
+        return [str(u.first_name) + " " + str(u.last_name)]
     else:
         u = User.objects.get(username = uname)
         p = Parent.objects.get(user = u)
@@ -29,7 +34,9 @@ def fetchChilds(request):
 
 
 @register.filter
-def fetchGrades(child):
+def fetchGrades(childName):
+    childNameTable = childName.split(" ")
+    child = User.objects.get(first_name=childNameTable[0], last_name=childNameTable[1])
     if utils.isStudent(child):
         u = User.objects.get(username = child)
         s = Student.objects.get(user=u)
@@ -38,7 +45,8 @@ def fetchGrades(child):
 
 @register.filter
 def fetchRemarks(uname):
-    u = User.objects.get(username=uname)
+    childNameTable = uname.split(" ")
+    u = User.objects.get(first_name=childNameTable[0], last_name=childNameTable[1])
     s = Student.objects.get(user=u)
     r = Remark.objects.filter(student=s)
     remarkArr = []
@@ -66,5 +74,16 @@ def fetchParents(request):
         for parent in studentParents:
             parents.add(parent)
     return parents
+
+
+@register.filter
+def fetchAbsences(childName):
+    childNameTable = childName.split(" ")
+    child = User.objects.get(first_name=childNameTable[0], last_name=childNameTable[1])
+    if utils.isStudent(child):
+        u = User.objects.get(username = child)
+        s = Student.objects.get(user=u)
+        return s.getAbsences
+
 
 

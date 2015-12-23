@@ -32,9 +32,11 @@ $(document).ready(function () {
     var manageLessonsSelector = function () {
 
         var subjectSelected = $(".subjectList").val().trim();
+        var classSelected = $(".classSelection").val().trim();
 
         $.post("fetchClassesLessons", {
-            subjectSelected: subjectSelected
+            subjectSelected: subjectSelected,
+            classSelected: classSelected
         }, function (data) {
             var interestingData = data.lessonList;
             var selectionElem = $(".lessonList");

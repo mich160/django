@@ -28,7 +28,6 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'djangoschool001@gmail.com'

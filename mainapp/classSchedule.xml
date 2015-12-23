@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schedule>
+    <class>
+        <classname>IA</classname>
+        <timetable>
+            <monday>
+                <subject>
+                    <name>IO</name>
+                    <teacher>Tadeusz Maciak</teacher>
+                    <lesson>1</lesson>
+                </subject>
+                <subject>
+                    <name>KCK</name>
+                    <teacher>Wiktor Jakowluk</teacher>
+                    <lesson>2</lesson>
+                </subject>
+            </monday>
+            <tuesday>
+                <subject>
+                    <name>PAWW</name>
+                    <teacher>Marek Parfieniuk</teacher>
+                    <lesson>4</lesson>
+                </subject>
+            </tuesday>
+            <wednesday>
+                <subject>
+                    <name>JS</name>
+                    <teacher>Tadeusz Maciak</teacher>
+                    <lesson>6</lesson>
+                </subject>
+            </wednesday>
+            <thursday>
+                <subject>
+                    <name>ZTP</name>
+                    <teacher>Wiktor Jakowluk</teacher>
+                    <lesson>2</lesson>
+                </subject>
+                <subject>
+                    <name>Angielski</name>
+                    <teacher>Marek Parfieniuk</teacher>
+                    <lesson>4</lesson>
+                </subject>
+                <subject>
+                    <name>RSwTA</name>
+                    <teacher>Tadeusz Maciak</teacher>
+                    <lesson>6</lesson>
+                </subject>
+            </thursday>
+            <friday></friday>
+        </timetable>
+    </class>
+    <class>
+        <classname>IIA</classname>
+        <timetable>
+            <monday>
+                <subject>
+                    <name>ASD</name>
+                    <teacher>Wiktor Jakowluk</teacher>
+                    <lesson>1</lesson>
+                </subject>
+                <subject>
+                    <name>BD</name>
+                    <teacher>Wiktor Jakowluk</teacher>
+                    <lesson>3</lesson>
+                </subject>
+            </monday>
+            <tuesday></tuesday>
+            <wednesday>
+                <subject>
+                    <name>ASD</name>
+                    <teacher>Marek Parfieniuk</teacher>
+                    <lesson>6</lesson>
+                </subject>
+            </wednesday>
+            <thursday>
+                <subject>
+                    <name>Angielski</name>
+                    <teacher>Tadeusz Maciak</teacher>
+                    <lesson>4</lesson>
+                </subject>
+                <subject>
+                    <name>UEITP</name>
+                    <teacher>Tadeusz Maciak</teacher>
+                    <lesson>5</lesson>
+                </subject>
+            </thursday>
+            <friday>
+                <subject>
+                    <name>AK</name>
+                    <teacher>Marek Parfieniuk</teacher>
+                    <lesson>2</lesson>
+                </subject>
+                <subject>
+                    <name>PS</name>
+                    <teacher>Wiktor Jakowluk</teacher>
+                    <lesson>3</lesson>
+                </subject>
+            </friday>
+        </timetable>
+    </class>
+</schedule>

@@ -101,15 +101,12 @@ def addNewUser(request):
         newUser.save()
         if hashCode.teacher:
             hashCode.teacher.user = newUser
-            hashCode.teacher.tempFullName = ''
             hashCode.teacher.save()
         if hashCode.student:
             hashCode.student.user = newUser
-            hashCode.student.tempFullName = ''
             hashCode.student.save()
         if hashCode.parent:
             hashCode.parent.user = newUser
-            hashCode.parent.tempFullName = ''
             hashCode.parent.save()
         hashCode.delete()
 
@@ -173,10 +170,15 @@ def saveGrade(request):
 
     sub = None
     for s in students:
-        u1 = User.objects.get(username=s)
+        firstname = s.split(" ")[0]
+        lastname = s.split(" ")[1]
+        u1 = User.objects.get(first_name=firstname, last_name=lastname)
         s = Student.objects.get(user=u1)
         if sub is None:
             cl = Class.objects.get(student=s)
+            print(cl)
+            print(subject)
+            print(t)
             sub = Subject.objects.get(name=subject, teacher=t, clazz=cl)
         Grade.objects.create(grade=grade, subject=sub, student=s, forWhat=forWhat, modifier=modifier, date=timezone.now())
 
@@ -243,8 +245,10 @@ def fetchClassSubject(request):
 
 def fetchClassesLessons(request):
     subject = request.POST['subjectSelected']
+    classSelected = request.POST['classSelected']
 
-    s = Subject.objects.get(name=subject)
+    clz = Class.objects.get(name=classSelected)
+    s = Subject.objects.get(name=subject, clazz=clz)
     l = Lesson.objects.filter(subject=s)
     lessonList = []
     for item in l:
