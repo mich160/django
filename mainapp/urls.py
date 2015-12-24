@@ -24,5 +24,6 @@ urlpatterns = [
     url(r'^settings', views.settings),
     url(r'^changePassword', views.settings),
     url(r'^changeMail', views.settings),
-    url(r'^timetable', views.timetable)
+    url(r'^timetable', views.timetable),
+    url(r'^getTimeTablePDF', views.getTimeTablePDF)
 ]

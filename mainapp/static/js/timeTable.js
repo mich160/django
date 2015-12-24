@@ -4,6 +4,7 @@
 
 
 $(document).ready(function () {
+    setupAjax();
     $('table').addClass('table table-striped');
     $('th:not(.lessonTimeHeader)').addClass('dayHeader')
     tables = $('table');
@@ -38,6 +39,21 @@ $(document).ready(function () {
 
 
     });
+
+
+    $('.savePDF').click(function () {
+
+        var table = $($(this).closest('ul').siblings('table')[0]).html();
+        
+        console.log(table);
+
+        $.post("getTimeTablePDF", {
+            tbl:table
+        }, function () {
+            console.log("im back");
+        })
+
+    })
 
 
 });

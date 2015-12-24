@@ -3,6 +3,7 @@
     {% load navtag %}
     {% load staticfiles %}
 
+    <script src="{% static 'js/postAjaxUtility.js' %}"></script>
     <script src="{% static 'js/timeTable.js' %}"></script>
 
     <div class="container-fluid">
@@ -16,6 +17,12 @@
                         <div class="panel-heading">  {{ key }} </div>
 
                         {{ val|generateTable }}
+
+                        <ul class="list-group">
+                            <li class="list-group-item"><button class="btn btn-default savePDF">Zapisz</button></li>
+                        </ul>
+
+
 
                         </div>
                     {% endfor %}

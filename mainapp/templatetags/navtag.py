@@ -14,13 +14,10 @@ def fetchClasses(request):
     t = Teacher.objects.get(user=u)
     s = Subject.objects.filter(teacher=t).distinct()
     for abc in s:
-        print(abc)
         c = Class.objects.filter(subject=abc)
-        print(c)
     tab = []
     for cls in c:
         tab.append(cls)
-    print(tab)
     return tab
 
 

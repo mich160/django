@@ -295,7 +295,9 @@ def submitAbsences(request):
     l = Lesson.objects.get(subject=s, date=date)
 
     for a in abs:
-        studUser = User.objects.get(username=a)
+        firstName = a.split(" ")[0]
+        lastName = a.split(" ")[1]
+        studUser = User.objects.get(first_name=firstName, last_name=lastName)
         stud = Student.objects.get(user=studUser)
 
         if abs[a] == 'true':
@@ -340,5 +342,14 @@ def changeMail(request):
     else:
         return HttpResponse(status=400)
 
+
 def timetable(request):
     return  render(request, 'timeTable.html')
+
+
+def getTimeTablePDF(request):
+
+
+
+    return HttpResponse(status=500)
+
