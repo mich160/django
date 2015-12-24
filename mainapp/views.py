@@ -180,7 +180,13 @@ def saveGrade(request):
             print(subject)
             print(t)
             sub = Subject.objects.get(name=subject, teacher=t, clazz=cl)
-        Grade.objects.create(grade=grade, subject=sub, student=s, forWhat=forWhat, modifier=modifier, date=timezone.now())
+            if s.getAverage() < 2:
+                par = Parent.objects.filter(student=s)
+                parentUser = User.objects.get(parent=par[0])
+                sendEMail(u, parentUser, "Wiadomość kontrolna",
+                          "Wiadomość wygenerowania automatycznie. Uczeń " + s.tempFullName + " przekroczył poniżej średniej 2 z " + subject)
+        Grade.objects.create(grade=grade, subject=sub, student=s, forWhat=forWhat, modifier=modifier,
+                             date=timezone.now())
 
     return HttpResponse('')
 
@@ -344,12 +350,8 @@ def changeMail(request):
 
 
 def timetable(request):
-    return  render(request, 'timeTable.html')
+    return render(request, 'timeTable.html')
 
 
 def getTimeTablePDF(request):
-
-
-
     return HttpResponse(status=500)
-

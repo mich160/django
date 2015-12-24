@@ -72,6 +72,16 @@ class Student(models.Model):
                 result[subject].append(grade)
         return result
 
+    def getAverage(self):
+        grades = Grade.objects.filter(student=self)
+        print(grades)
+        sum = 0
+        for g in grades:
+            sum += g.grade
+        avg = sum/grades.count()
+        print(avg)
+        return avg
+
     def getRemarks(self):
         return Remark.objects.filter(student=self)
 

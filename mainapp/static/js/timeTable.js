@@ -44,7 +44,7 @@ $(document).ready(function () {
     $('.savePDF').click(function () {
 
         var table = $($(this).closest('ul').siblings('table')[0]).html();
-        
+
         console.log(table);
 
         $.post("getTimeTablePDF", {
