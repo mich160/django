@@ -7,6 +7,8 @@ $(document).ready(function () {
         var subj = $(".mailSubject").val();
         var msg = $(".mailBody").val();
 
+        console.log(to);
+
         if (to != '' && subj != '' && msg != '') {
             $.post("mailServ", {
                 toWho: to,

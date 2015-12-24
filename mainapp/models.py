@@ -46,10 +46,7 @@ class Parent(models.Model):
         return studentList
 
     def __str__(self):
-        if not self.user:
-            return str(self.tempFullName)
-        else:
-            return str(self.user)
+        return str(self.tempFullName)
 
 
 class Student(models.Model):

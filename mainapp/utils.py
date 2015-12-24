@@ -54,6 +54,15 @@ def isStudent(user):
         return False
 
 
+def isTeacher(user):
+    try:
+        u = User.objects.get(username=user)
+        s = Teacher.objects.get(user=u)
+        return True
+    except:
+        return False
+
+
 def sendEMail(fromWho, toWho, subject, body):
     print('mail')
     mailSubject = fromWho.first_name + " " + fromWho.last_name + ":" + subject

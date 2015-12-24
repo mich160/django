@@ -1,9 +1,11 @@
 from django import template
 from mainapp import utils
 from mainapp.models import User, Teacher, Subject, Class, Student, Remark, Parent
+from mainapp import subjectManager
 from django.http import JsonResponse
 
 register = template.Library()
+
 
 @register.filter
 def fetchClasses(request):
@@ -25,11 +27,11 @@ def fetchClasses(request):
 def fetchChilds(request):
     uname = request.session["username"]
     if utils.isStudent(uname):
-        u = User.objects.get(username = uname)
+        u = User.objects.get(username=uname)
         return [str(u.first_name) + " " + str(u.last_name)]
     else:
-        u = User.objects.get(username = uname)
-        p = Parent.objects.get(user = u)
+        u = User.objects.get(username=uname)
+        p = Parent.objects.get(user=u)
     return p.fetchChild()
 
 
@@ -38,7 +40,7 @@ def fetchGrades(childName):
     childNameTable = childName.split(" ")
     child = User.objects.get(first_name=childNameTable[0], last_name=childNameTable[1])
     if utils.isStudent(child):
-        u = User.objects.get(username = child)
+        u = User.objects.get(username=child)
         s = Student.objects.get(user=u)
         return s.getGradesWithSubjects
 
@@ -52,7 +54,7 @@ def fetchRemarks(uname):
     remarkArr = []
     for remark in r:
         singleRemark = {}
-        singleRemark['teacher']=str(remark.teacher.user.first_name + " " + remark.teacher.user.last_name)
+        singleRemark['teacher'] = str(remark.teacher.user.first_name + " " + remark.teacher.user.last_name)
         singleRemark['info'] = str(remark.info)
         remarkArr.append(singleRemark)
     return remarkArr
@@ -81,9 +83,27 @@ def fetchAbsences(childName):
     childNameTable = childName.split(" ")
     child = User.objects.get(first_name=childNameTable[0], last_name=childNameTable[1])
     if utils.isStudent(child):
-        u = User.objects.get(username = child)
+        u = User.objects.get(username=child)
         s = Student.objects.get(user=u)
         return s.getAbsences
 
 
-
+@register.filter
+def fetchLessons(request):
+    uname = request.session["username"]
+    user = User.objects.get(username=uname)
+    userRealName = user.first_name + " " + user.last_name
+    timeTable = {}
+    if utils.isTeacher(uname):
+        timeTable[userRealName] = subjectManager.getTeacherTimeTable(userRealName)
+        return timeTable
+    elif utils.isStudent(uname):
+        s = Student.objects.get(user=user)
+        timeTable[userRealName] = subjectManager.getStudentTimeTable(s.clazz.name)
+        return timeTable
+    else:
+        children = fetchChilds(request)
+        for child in children:
+            s = Student.objects.get(user=user)
+            timeTable[child] = subjectManager.getStudentTimeTable(s.clazz.name)
+        return timeTable

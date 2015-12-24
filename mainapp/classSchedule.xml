@@ -3,7 +3,7 @@
     <class>
         <classname>IA</classname>
         <timetable>
-            <monday>
+            <day value="monday">
                 <subject>
                     <name>IO</name>
                     <teacher>Tadeusz Maciak</teacher>
@@ -14,22 +14,22 @@
                     <teacher>Wiktor Jakowluk</teacher>
                     <lesson>2</lesson>
                 </subject>
-            </monday>
-            <tuesday>
+            </day>
+            <day value="tuesday">
                 <subject>
                     <name>PAWW</name>
                     <teacher>Marek Parfieniuk</teacher>
                     <lesson>4</lesson>
                 </subject>
-            </tuesday>
-            <wednesday>
+            </day>
+            <day value="wednesday">
                 <subject>
                     <name>JS</name>
                     <teacher>Tadeusz Maciak</teacher>
                     <lesson>6</lesson>
                 </subject>
-            </wednesday>
-            <thursday>
+            </day>
+            <day value="thursday">
                 <subject>
                     <name>ZTP</name>
                     <teacher>Wiktor Jakowluk</teacher>
@@ -45,14 +45,14 @@
                     <teacher>Tadeusz Maciak</teacher>
                     <lesson>6</lesson>
                 </subject>
-            </thursday>
-            <friday></friday>
+            </day>
+            <day value="friday"></day>
         </timetable>
     </class>
     <class>
         <classname>IIA</classname>
         <timetable>
-            <monday>
+            <day value="monday">
                 <subject>
                     <name>ASD</name>
                     <teacher>Wiktor Jakowluk</teacher>
@@ -63,16 +63,16 @@
                     <teacher>Wiktor Jakowluk</teacher>
                     <lesson>3</lesson>
                 </subject>
-            </monday>
-            <tuesday></tuesday>
-            <wednesday>
+            </day>
+            <day value="tuesday"></day>
+            <day value="wednesday">
                 <subject>
                     <name>ASD</name>
                     <teacher>Marek Parfieniuk</teacher>
                     <lesson>6</lesson>
                 </subject>
-            </wednesday>
-            <thursday>
+            </day>
+            <day value="thursday">
                 <subject>
                     <name>Angielski</name>
                     <teacher>Tadeusz Maciak</teacher>
@@ -83,8 +83,8 @@
                     <teacher>Tadeusz Maciak</teacher>
                     <lesson>5</lesson>
                 </subject>
-            </thursday>
-            <friday>
+            </day>
+            <day value="friday">
                 <subject>
                     <name>AK</name>
                     <teacher>Marek Parfieniuk</teacher>
@@ -95,7 +95,7 @@
                     <teacher>Wiktor Jakowluk</teacher>
                     <lesson>3</lesson>
                 </subject>
-            </friday>
+            </day>
         </timetable>
     </class>
 </schedule>

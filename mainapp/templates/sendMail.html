@@ -15,7 +15,7 @@
                             <select id="parentSelect" class="form-control parentSelect">
 
                                 {% for parent in request|fetchParents %}
-                                    <option value={{ parent }}> {{ parent }} </option>
+                                    <option value="{{ parent }}"> {{ parent }} </option>
                                 {% endfor %}
                             </select>
                         </li>

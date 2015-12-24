@@ -207,7 +207,8 @@ def sendMailServ(request):
     if fromWhoUsername and toWhoUsername and subject and body:
         try:
             fromWho = User.objects.get(username=fromWhoUsername)
-            toWho = User.objects.get(username=toWhoUsername)
+            print(toWhoUsername)
+            toWho = User.objects.get(first_name=toWhoUsername.split(" ")[0], last_name=toWhoUsername.split(" ")[1])
             sendEMail(fromWho, toWho, subject, body)
         except:
             raise
@@ -338,3 +339,6 @@ def changeMail(request):
         return HttpResponse('')
     else:
         return HttpResponse(status=400)
+
+def timetable(request):
+    return  render(request, 'timeTable.html')

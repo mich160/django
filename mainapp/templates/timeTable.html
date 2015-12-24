@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+    {% load navtag %}
+    {% load staticfiles %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class=" col-md-6">
+
+
+                // display current week - fetch all lessons put them into timetable that looks nice
+                // check all previous weeks, current and one next
+
+                {% with timeTable=request|fetchLessons %}
+
+                    {{ timeTable }}
+
+                {% endwith %}
+
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
