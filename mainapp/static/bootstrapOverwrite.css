@@ -130,7 +130,60 @@ a:hover {
     margin-bottom: 0px;
 }
 
+.lessonTimeHeader {
+    width:20%;
+}
 
+.dayHeader {
+    width:16%;
+}
+
+.classTD {
+    padding:4px 8px;
+    margin-bottom:0;
+    font-size:14px;
+    font-weight:400;
+    text-align:center;
+    border:1px solid lightgrey;
+}
+
+.classTDBlue {
+    color:white;
+    background-color:#337ab7;
+}
+
+.classTDGreen {
+    color:white;
+    background-color:#5cb85c;
+}
+
+.classTDLightBlue {
+    color:white;
+    background-color:#5bc0de;
+}
+
+.classTDOrange {
+    color:white;
+    background-color:#f0ad4e;
+}
+
+.classTDRed {
+    color:white;
+    background-color:#d9534f;
+}
+
+.classTDRed {
+    color:white;
+    background-color:#d9534f;
+}
+
+.classTDLightGreen {
+    background-color:#dff0d8;
+}
+
+.classTDLightOrange {
+    background-color:#fcf8e3;
+}
 
 
 

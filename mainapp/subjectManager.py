@@ -21,6 +21,7 @@ classNumberHourLookup = {
     '8': datetime.time(15)
 }
 
+
 def manage():
     tree = ET.parse('D:\django\mainapp\classSchedule.xml')
     for cls in tree.getroot():
@@ -42,8 +43,8 @@ def manage():
                     sub.save()
 
                 lessonDateTime = datetime.datetime.combine(
-                    next_weekday(datetime.date.today() + datetime.timedelta(days=4), daysLookup[dayName]),
-                    classNumberHourLookup[lessonTime])
+                        next_weekday(datetime.date.today() + datetime.timedelta(days=4), daysLookup[dayName]),
+                        classNumberHourLookup[lessonTime])
 
                 try:
                     les = Lesson.objects.get(subject=sub, date=lessonDateTime)
@@ -51,50 +52,49 @@ def manage():
                     les = Lesson(subject=sub, date=lessonDateTime)
                     les.save()
 
+
 def next_weekday(d, weekday):
     days_ahead = weekday - d.weekday()
     if days_ahead <= 0:  # Target day already happened this week
         days_ahead += 7
     return d + datetime.timedelta(days_ahead)
 
+
 def getTeacherTimeTable(name):
     tree = ET.parse('D:\django\mainapp\classSchedule.xml')
     root = tree.getroot()
 
-    parent_map = {c:p for p in tree.iter() for c in p}
-    teacherSubjects = [parent_map[thc] for thc in root.findall("class/timetable/day/subject/teacher") if thc.text == name]
+    parent_map = {c: p for p in tree.iter() for c in p}
+    teacherSubjects = [parent_map[thc] for thc in root.findall("class/timetable/day/subject/teacher") if
+                       thc.text == name]
     result = {}
+    result['monday'] = []
+    result['tuesday'] = []
+    result['wednesday'] = []
+    result['thursday'] = []
+    result['friday'] = []
 
     for subject in teacherSubjects:
         day = parent_map[subject].get('value')
-
-        if result.get(day) is None:
-            result[day] = []
-
         lessonInfo = [subject.find('name').text, subject.find('lesson').text]
         result[day].append(lessonInfo)
 
     return result
 
+
 def getStudentTimeTable(className):
     tree = ET.parse('D:\django\mainapp\classSchedule.xml')
     root = tree.getroot()
 
-    parent_map = {c:p for p in tree.iter() for c in p}
+    parent_map = {c: p for p in tree.iter() for c in p}
     clazz = [clazz for clazz in root.findall("class") if clazz.find('classname').text == className]
     days = clazz[0].findall('timetable/day')
     result = {}
     for day in days:
         dayValue = day.get('value')
+        result[dayValue] = []
+        for subject in day:
+            lessonInfo = [subject.find('name').text, subject.find('lesson').text]
+            result[dayValue].append(lessonInfo)
 
-        subjects = day.findall('subject')
-
-
-
-
-
-        print(subjects)
-
-
-
-    return "dupa"
+    return result

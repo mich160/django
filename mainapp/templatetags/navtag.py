@@ -2,6 +2,7 @@ from django import template
 from mainapp import utils
 from mainapp.models import User, Teacher, Subject, Class, Student, Remark, Parent
 from mainapp import subjectManager
+from django.utils.html import format_html
 from django.http import JsonResponse
 
 register = template.Library()
@@ -104,6 +105,45 @@ def fetchLessons(request):
     else:
         children = fetchChilds(request)
         for child in children:
-            s = Student.objects.get(user=user)
+            studentName = child.split(" ")
+            studentFirstName = studentName[0]
+            studentLastName = studentName[1]
+            u = User.objects.get(first_name=studentFirstName, last_name=studentLastName)
+            s = Student.objects.get(user=u)
             timeTable[child] = subjectManager.getStudentTimeTable(s.clazz.name)
         return timeTable
+
+
+@register.filter
+def generateTable(tableMap):
+    lessonLookUp = {
+        0: '8:00- 8:45',
+        1: '9:00- 9:45',
+        2: '10:00- 10:45',
+        3: '11:00- 11:45',
+        4: '12:00- 12:45',
+        5: '13:00- 13:45',
+        6: '14:00- 14:45',
+        7: '15:00- 15:45',
+    }
+    daysInOrder = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday']
+
+    tableResult = "<table><thead><th class='lessonTimeHeader'>Dzwonki</th><th>Poniedziałek</th><th>Wtorek</th><th>Środa</th> <th>Czwartek</th><th>Piątek</th></thead><tbody>"
+
+    for rowNumber in range(8):
+        tableResult += "<tr><td class='lessonTime'>" + lessonLookUp[rowNumber] + "</td>"
+
+        for day in daysInOrder:
+            lesson = None
+            for elem in tableMap[day]:
+                if rowNumber + 1 == int(elem[1]):
+                    lesson = "<td><span>" + elem[0] + "</span></td>"
+            if lesson is not None:
+                tableResult += lesson
+            else:
+                tableResult += "<td></td>"
+
+        tableResult += "</tr>"
+
+    tableResult += "</tbody></table>"
+    return format_html(tableResult)

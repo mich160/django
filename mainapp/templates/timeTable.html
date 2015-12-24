@@ -2,23 +2,28 @@
 {% block content %}
     {% load navtag %}
     {% load staticfiles %}
+
+    <script src="{% static 'js/timeTable.js' %}"></script>
+
     <div class="container-fluid">
         <div class="row">
-            <div class=" col-md-6">
-
-
-                // display current week - fetch all lessons put them into timetable that looks nice
-                // check all previous weeks, current and one next
+            <div class=" col-md-8">
 
                 {% with timeTable=request|fetchLessons %}
+                    {% for key, val in timeTable.items %}
 
-                    {{ timeTable }}
+                        <div class="panel panel-default">
+                        <div class="panel-heading">  {{ key }} </div>
 
+                        {{ val|generateTable }}
+
+                        </div>
+                    {% endfor %}
                 {% endwith %}
 
 
+                </div>
             </div>
         </div>
-    </div>
 
 {% endblock %}
