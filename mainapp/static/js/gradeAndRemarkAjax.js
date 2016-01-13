@@ -21,7 +21,6 @@ $(document).ready(function () {
                 newOption.text(interestingData[c]);
                 selectionElem.append(newOption);
             }
-
         });
 
         $.post("fetchClassSubject", {classSelected: classSelected}, function (data) {

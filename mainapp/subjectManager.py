@@ -28,7 +28,6 @@ def manage():
         className = cls.find('classname').text
         for day in cls.find('timetable'):
             dayName = day.get('value')
-            print(dayName)
             for subject in day:
                 subjectName = subject.find('name').text
                 teacher = subject.find('teacher').text

@@ -76,9 +76,11 @@ class Student(models.Model):
         grades = Grade.objects.filter(student=self)
         print(grades)
         sum = 0
-        for g in grades:
-            sum += g.grade
-        avg = sum/grades.count()
+        avg = 5
+        if(grades.count() != 0):
+            for g in grades:
+                sum += g.grade
+            avg = sum/grades.count()
         print(avg)
         return avg
 

@@ -72,7 +72,8 @@ def fetchParents(request):
     for student in students:
         studentParents = student.parents.all()
         for parent in studentParents:
-            parents.add(parent)
+            if parent.user is not None:
+                parents.add(parent)
     return parents
 
 

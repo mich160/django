@@ -141,7 +141,9 @@ def saveRemark(request):
     t = Teacher.objects.get(user=u)
 
     for s in students:
-        u1 = User.objects.get(username=s)
+        firstname = s.split(" ")[0]
+        lastname = s.split(" ")[1]
+        u1 = User.objects.get(first_name=firstname, last_name=lastname)
         s = Student.objects.get(user=u1)
         Remark.objects.create(student=s, info=remarkText, date=timezone.now(), teacher=t)
 
