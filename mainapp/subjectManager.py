@@ -23,7 +23,7 @@ classNumberHourLookup = {
 
 
 def manage():
-    tree = ET.parse('D:\django\mainapp\classSchedule.xml')
+    tree = ET.parse('.\mainapp\classSchedule.xml')
     for cls in tree.getroot():
         className = cls.find('classname').text
         for day in cls.find('timetable'):
