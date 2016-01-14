@@ -331,6 +331,9 @@ def changePassword(request):
     oldPswd = request.POST["oldPswd"]
     newPswd = make_password(request.POST["newPswd"])
     user = User.objects.get(username=request.session['username'])
+    print(oldPswd)
+    print(newPswd)
+    print (user.password)
     if check_password(oldPswd, user.password):
         user.password = newPswd
         user.save()
@@ -343,6 +346,9 @@ def changeMail(request):
     pswd = request.POST["pswd"]
     mail = request.POST["mail"]
     user = User.objects.get(username=request.session['username'])
+    print(pswd)
+    print(mail)
+    print(user.password)
     if check_password(pswd, user.password):
         user.email = mail
         user.save()

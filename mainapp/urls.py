@@ -22,8 +22,8 @@ urlpatterns = [
     url(r'^submitAbsences', views.submitAbsences),
     url(r'^mailServ', views.sendMailServ),
     url(r'^settings', views.settings),
-    url(r'^changePassword', views.settings),
-    url(r'^changeMail', views.settings),
+    url(r'^changePassword', views.changePassword),
+    url(r'^changeMail', views.changeMail),
     url(r'^timetable', views.timetable),
     url(r'^getTimeTablePDF', views.getTimeTablePDF)
 ]
